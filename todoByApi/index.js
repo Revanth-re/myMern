@@ -129,6 +129,7 @@ app.get("/", (req, res) => {
 app.get("/health", (req, res) => {
   res.json({ status: "healthy" });
 });
+// console.log("hello");
 
 // Routes
 app.use("/", router);

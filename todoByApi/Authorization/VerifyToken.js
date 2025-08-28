@@ -44,6 +44,7 @@ const jwt = require("jsonwebtoken");
 
 const VerifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
+console.log(authHeader,"token in verify");
 
   if (!authHeader) {
     return res.status(401).json({ message: "Authorization header missing" });
@@ -54,6 +55,7 @@ const VerifyToken = (req, res, next) => {
   if (!token) {
     return res.status(401).json({ message: "No token provided" });
   }
+console.log(token,"token in verify");
 
   try {
     const jwtSecret = process.env.JWT_SECRET || process.env.JWT_SECRET_KEY || "your_jwt_secret_here";

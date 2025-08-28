@@ -166,12 +166,6 @@ router.put("/api/expiryItems",expiryDateHandler)
 router.put("/api/updateItems",updateExpiredItems)
 
 
-router.stack.forEach((r) => {
-  if (r.route && r.route.path) {
-    console.log("✅ Loaded route:", r.route.stack[0].method.toUpperCase(), r.route.path);
-  }
-});
-
 
 
 module.exports={router}
