@@ -440,7 +440,7 @@ const YourPostedProducts = () => {
   const fetchBillData = async () => {
     try {
       const res = await axios.get(
-        "https://mymern-e51y.onrender.com/api/getstorebill",
+        "https://mymern-e51y.onrender.com/api/getprintdetails",
         { headers: { Authorization: `Bearer ${userToken}` } }
       );
       setbilldata(res.data);

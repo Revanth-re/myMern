@@ -369,7 +369,7 @@ const BluetoothPrinter = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://mymern-e51y.onrender.com/api/getprintdetails",
+        "https://mymern-e51y.onrender.com/api/getstorebill",
         { headers: { Authorization: `Bearer ${userToken}` } }
       );
       setAlldata(response.data || []);
