@@ -14,7 +14,7 @@
 //     const handleSignup=async(e)=>{
 //         e.preventDefault()
 //         try {
-//             const response=await axios.post("https://traxxx-5.onrender.com//api/signup",signupDetails,  { headers: { "Content-Type": "application/json" }})
+//             const response=await axios.post("https://mymern-e51y.onrender.com//api/signup",signupDetails,  { headers: { "Content-Type": "application/json" }})
 
 //             console.log("postedddd");
 //             console.log(response);
@@ -60,7 +60,7 @@ const Signup = () => {
     const handleSignup = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`https://traxxx-5.onrender.com/api/signup`, signupDetails, {
+            await axios.post(`https://mymern-e51y.onrender.com/api/signup`, signupDetails, {
                 headers: { "Content-Type": "application/json" }
             });
             navigate("/Login");

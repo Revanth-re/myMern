@@ -13,7 +13,7 @@
 
 // // //   const FetchingData = async () => {
 // // //     try {
-// // //       const response = await axios.get("https://traxxx-5.onrender.com/api/getAll",{
+// // //       const response = await axios.get("https://mymern-e51y.onrender.com/api/getAll",{
 // // //     headers: { Authorization: `Bearer ${userToken}` }
 // // //    });
 // // //       setMoreData(response.data);
@@ -119,7 +119,7 @@
 
 // // //   const FetchingData = async () => {
 // // //     try {
-// // //       const response = await axios.get("https://traxxx-5.onrender.com/api/getAll", {
+// // //       const response = await axios.get("https://mymern-e51y.onrender.com/api/getAll", {
 // // //         headers: { Authorization: `Bearer ${userToken}` },
 // // //       });
 // // //       const products = response.data;
@@ -233,7 +233,7 @@
 
 // //   const FetchingData = async () => {
 // //     try {
-// //       const response = await axios.get("https://traxxx-5.onrender.com/api/getAll", {
+// //       const response = await axios.get("https://mymern-e51y.onrender.com/api/getAll", {
 // //         headers: { Authorization: `Bearer ${userToken}` },
 // //       });
 // //       const products = response.data;
@@ -338,7 +338,7 @@
 
 //   const FetchingData = async () => {
 //     try {
-//       const response = await axios.get("https://traxxx-5.onrender.com/api/getAll", {
+//       const response = await axios.get("https://mymern-e51y.onrender.com/api/getAll", {
 //         headers: { Authorization: `Bearer ${userToken}` },
 //       });
 
@@ -461,7 +461,7 @@ const OurStore = () => {
 
   const FetchingData = async () => {
     try {
-      const response = await axios.get("https://traxxx-5.onrender.com/api/getAll", {
+      const response = await axios.get("https://mymern-e51y.onrender.com/api/getAll", {
         headers: { Authorization: `Bearer ${userToken}` },
       });
 

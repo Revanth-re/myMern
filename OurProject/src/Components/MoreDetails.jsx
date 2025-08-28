@@ -26,7 +26,7 @@ const MoreDetails = ({salesData}) => {
 
   try {
     await axios.put(
-      `https://traxxx-5.onrender.com/api/update/${item._id}`,
+      `https://mymern-e51y.onrender.com/api/update/${item._id}`,
       {
         counter: 1,
         quantity: item.productQuantity + 1,
@@ -49,7 +49,7 @@ const decrease = async (item) => {
 
   try {
     await axios.put(
-      `https://traxxx-5.onrender.com/api/updateDec/${item._id}`,
+      `https://mymern-e51y.onrender.com/api/updateDec/${item._id}`,
       { counter: -1 },
       { headers: { "Content-Type": "application/json" } }
     );
@@ -71,7 +71,7 @@ const decrease = async (item) => {
 
 //   try {
 //     const response = await axios.put(
-//       `https://traxxx-5.onrender.com/api/update/${item._id}`,
+//       `https://mymern-e51y.onrender.com/api/update/${item._id}`,
 //       {
 //         counter: count,
 //         quantity: itemQuant+1
@@ -99,7 +99,7 @@ const decrease = async (item) => {
 // // console.log(count);
 // //     // console.log(item);
     
-// //     const response =await axios.put(`https://traxxx-5.onrender.com/api/update/${item._id}`, {counter:count}
+// //     const response =await axios.put(`https://mymern-e51y.onrender.com/api/update/${item._id}`, {counter:count}
 // //       , { headers: { "Content-Type": "application/json" } }
 // //     ).then((res)=>console.log(res) 
 // //     ).catch((err)=>console.log(err)
@@ -122,7 +122,7 @@ const decrease = async (item) => {
 //     console.log(currValue,"value");
     
     
-//     const response =await axios.put(`https://traxxx-5.onrender.com/api/updateDec/${item._id}`, {counter:decreaseCount}
+//     const response =await axios.put(`https://mymern-e51y.onrender.com/api/updateDec/${item._id}`, {counter:decreaseCount}
 //       , { headers: { "Content-Type": "application/json" } }
 //     ).then((res)=>console.log(res)
 //     ).catch((err)=>console.log(err)
@@ -137,7 +137,7 @@ const decrease = async (item) => {
     console.log(item._id);
     const confirmation=confirm("are you sure to delete product")
     if (confirmation) {
-       const response =await axios.delete(`https://traxxx-5.onrender.com/api/delete/${item._id}`)
+       const response =await axios.delete(`https://mymern-e51y.onrender.com/api/delete/${item._id}`)
     .then((res)=>  console.log(res)
     
     ).catch((err)=>console.log(err)
@@ -156,7 +156,7 @@ const decrease = async (item) => {
   const { id } = useParams();
  const fetchOne = async () => {
       try {
-        const response = await axios.get(`https://traxxx-5.onrender.com/api/MoreDetails/${id}`);
+        const response = await axios.get(`https://mymern-e51y.onrender.com/api/MoreDetails/${id}`);
         setProduct(response.data);
       } catch (error) {
         console.error("Error fetching product details:", error);

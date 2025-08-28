@@ -28,7 +28,7 @@ console.log(userToken,"usertoken");
 
     try {
       const res = await axios.post(
-        "https://traxxx-5.onrender.com/api/addkhatas",
+        "https://mymern-e51y.onrender.com/api/addkhatas",
         formData,
           {
     headers: { Authorization: `Bearer ${userToken}` }

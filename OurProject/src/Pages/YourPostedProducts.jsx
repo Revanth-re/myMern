@@ -1,390 +1,4 @@
 
-
-
-
-// // // import React from 'react'
-// // // import { useEffect } from 'react';
-// // // import axios from 'axios';
-// // // import { useState } from 'react';
-
-// // // const YourPostedProducts = () => {
-// // //     const [alldata,setAlldata]=useState([])
-
-// // //     const data = JSON.parse(localStorage.getItem("userToken"));
-// // //             const userToken = data?.token;
-// // //       // Fetch data from API
-// // //        const fetchData = async () => {
-// // //           try {
-         
-// // //             const response = await axios.get(
-// // //               "https://traxxx-5.onrender.com/api/getyourproducts",
-// // //               { headers: { Authorization: `Bearer ${userToken}` } }
-// // //             );
-// // //             setAlldata(response.data);
-// // //           } catch (error) {
-// // //             console.error("❌ Error fetching data:", error);
-// // //           }
-// // //         };
-// // //         useEffect(()=>{
-// // //             fetchData()
-
-// // //         },[])
-// // //         console.log(alldata,"alldtata");
-        
-// // //   return (
-// // //     <div>
-
-
-      
-
-
-// // //     </div>
-// // //   )
-// // // }
-
-// // // export default YourPostedProducts
-
-
-// // import React, { useEffect, useState } from 'react';
-// // import axios from 'axios';
-
-// // const YourPostedProducts = () => {
-// //   const [alldata, setAlldata] = useState([]);
-
-// //   const data = JSON.parse(localStorage.getItem("userToken"));
-// //   const userToken = data?.token;
-
-// //   const fetchData = async () => {
-// //     try {
-// //       const response = await axios.get(
-// //         "https://traxxx-5.onrender.com/api/getyourproducts",
-// //         { headers: { Authorization: `Bearer ${userToken}` } }
-// //       );
-// //       setAlldata(response.data);
-// //     } catch (error) {
-// //       console.error("❌ Error fetching data:", error);
-// //     }
-// //   };
-
-// //   useEffect(() => {
-// //     fetchData();
-// //   }, []);
-
-// //   console.log(alldata, "alldata");
-
-// //   return (
-// //     <div className="p-4 bg-gray-100 min-h-screen">
-// //       <h1 className="text-2xl font-bold mb-4">Your Posted Products</h1>
-
-// //       {alldata.length === 0 ? (
-// //         <p className="text-gray-500">No products found.</p>
-// //       ) : (
-// //         alldata.map((item) => (
-// //           <div
-// //             key={item._id}
-// //             className="bg-white p-4 rounded shadow mb-4"
-// //           >
-// //             <h2 className="text-xl font-semibold mb-1">{item.storeName}</h2>
-// //             <p className="text-gray-600 mb-2">Owner: {item.OwnerName}</p>
-
-// //             <h3 className="font-medium mb-2">Products:</h3>
-// //             <ul className="list-disc list-inside">
-// //               {item.Products.map((prod, index) => (
-// //                 <li key={index} className="text-gray-700">
-// //                   {prod.name || prod.productName} - {prod.price || prod.productPrice} ₹
-// //                 </li>
-// //               ))}
-// //             </ul>
-// //           </div>
-// //         ))
-// //       )}
-// //     </div>
-// //   );
-// // };
-
-// // export default YourPostedProducts;
-
-
-// import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
-
-// const YourPostedProducts = () => {
-//   const [alldata, setAlldata] = useState([]);
-//   const[count,setCount]=useState(1)
-//   const[allbilldata,setallbilldata]=useState([])
-//   const[getbilldata,setbilldata]=useState([])
-  
-//     const [device, setDevice] = useState(null);
-//     const [connected, setConnected] = useState(false);
-//   const data = JSON.parse(localStorage.getItem("userToken"));
-//   const userToken = data?.token;
-
-//   const fetchData = async () => {
-//     try {
-//       const response = await axios.get(
-//         "https://traxxx-5.onrender.com/api/getyourproducts",
-//         { headers: { Authorization: `Bearer ${userToken}` } }
-//       );
-//       setAlldata(response.data);
-//     } catch (error) {
-//       console.error("❌ Error fetching data:", error);
-//     }
-//   };
-//   const fetchBillData=async(req,res)=>{
-
-// try {
-//       const response = await axios.get(
-//         "https://traxxx-5.onrender.com/api/getstorebill",
-//         { headers: { Authorization: `Bearer ${userToken}` } }
-//       );
-//       setbilldata(response.data);
-//       localStorage.setItem("getbillData",JSON.stringify(response.data))
-//     } catch (error) {
-//       console.error("❌ Error fetching data:", error);
-//     }
-
-//   }
-
-
-
-//   useEffect(() => {
-//     fetchData();
-//   }, []);
-
-//   const handleIncrease = (storeId, prodIndex,e) => {
-//         e.stopPropagation()
-
-//     setAlldata(prev =>
-//       prev.map(store =>
-//         store._id === storeId
-//           ? {
-//               ...store,
-//               Products: store.Products.map((prod, index) =>
-//                 index === prodIndex
-//                   ? { ...prod, quantity: (prod.quantity || 0) + 1 }
-//                   : prod
-//               )
-//             }
-//           : store
-//       )
-//     );
-
-    
-//   };
-
-//   const handleDecrease = (storeId, prodIndex,e) => {
-//     e.stopPropagation()
-//     setAlldata(prev =>
-//       prev.map(store =>
-//         store._id === storeId
-//           ? {
-//               ...store,
-//               Products: store.Products.map((prod, index) =>
-//                 index === prodIndex
-//                   ? { ...prod, quantity: Math.max((prod.quantity || 0) - 1, 0) }
-//                   : prod
-//               )
-//             }
-//           : store
-//       )
-//     );
-//   };
-
-//   const handleClick=async(prod)=>{
-//     // e.stopPropagation()
-//     console.log(prod,"prod");
-//     setallbilldata(prod)
-    
-//     const res=await axios.post("https://traxxx-5.onrender.com/api/poststorebill",allbilldata,
-
-//         { headers: { Authorization: `Bearer ${userToken}` } }
-//       );
-//           fetchBillData()
-
-
-//   }
-//   console.log(getbilldata,"getbilldata");
-  
-//   const connectPrinter = async () => {
-//     try {
-//       const device = await navigator.bluetooth.requestDevice({
-//         acceptAllDevices: true,
-//         optionalServices: [0x18f0], // printer service UUID
-//       });
-
-//       await device.gatt.connect();
-//       setDevice(device);
-//       setConnected(true);
-//       console.log("✅ Connected to:", device.name);
-//     } catch (error) {
-//       console.error("❌ Error connecting:", error);
-//     }
-//   };
-
-
-
-//   // Print bill with auto-cut and dynamic spacing
-//   const printBill = async () => {
-//     if (!device || !connected) {
-//       alert("Please connect to a printer first!");
-//       return;
-//     }
-
-//     try {
-//       const service = await device.gatt.getPrimaryService(0x18f0);
-//       const characteristic = await service.getCharacteristic(0x2af1);
-// console.log(getbilldata,"getBilldaaa");
-// // console.log(getbilldata[0]._id);
-
-// const storeDetails=JSON.parse(localStorage.getItem("storeDetails"))
-//       // Build bill content
-//       let bill = ` -----${storeDetails.owner}------`;
-//       bill += "------------------------------\n";
-//       bill += "No Product   Qty  Price  Total\n";
-//       bill += "--------------------------------\n";
-
-//       let grandTotal = 0;
-
-//       getbilldata.forEach((item, index) => {
-//         // Limit product name to 12 chars for alignment
-//         const productName = (item.name || "").substring(0, 12).padEnd(12, " ");
-//         const qty = (item.quantity || 1).toString().padStart(-1, " ");
-//         const price = (item.price || 0).toString().padStart(3, " ");
-//         const total = ((item.price || 0) * (item.quantity || 1)).toString().padStart(6, " ");
-//         grandTotal += (item.price || 0) * (item.quantity || 1);
-
-//         bill += `${(index + 1).toString().padStart(0, " ")}  ${productName} ${qty} ${price} ${total}\n`;
-//       });
-
-//       bill += "--------------------------------\n";
-//       bill += `Grand Total: Rs:${grandTotal}\n`;
-//       bill += "--------------------------------\n";
-//       bill += "    Thank you for visiting! \n\n\n";
-
-//       const encoder = new TextEncoder();
-//       const data = encoder.encode(bill);
-
-//       // Auto-cut command for most ESC/POS printers
-//       const cutCommand = new Uint8Array([0x1D, 0x56, 0x00]);
-
-//       // Send data in chunks to avoid size limits
-//       const chunkSize = 200;
-//       for (let i = 0; i < data.length; i += chunkSize) {
-//         const chunk = data.slice(i, i + chunkSize);
-//         await characteristic.writeValue(chunk);
-//       }
-
-//       // Send cut command
-//       await characteristic.writeValue(cutCommand);
-
-//       const DeletedData=axios.delete("https://traxxx-5.onrender.com/api/deletestorebillprint",
-//           { headers: { Authorization: `Bearer ${userToken}` } }
-//         )
-// console.log(DeletedData,"deletedData");
-// // fetchData()
-// fetchBillData()
-
-//       console.log("🖨️ Bill Printed:\n", bill);
-//     } catch (error) {
-//       console.error("❌ Error printing:", error);
-//     }
-//   };
-// let owner;
-// let stored;
-
-//   return (
-//     <div className="p-4 bg-gray-100 min-h-screen">
-//       <h1 className="text-2xl font-bold mb-4">Your Posted Products</h1>
-
-//       {alldata.length === 0 ? (
-//         <p className="text-gray-500">No products found.</p>
-//       ) : (
-//         alldata.map(store => (
-//           <div key={store._id} className="mb-6" onClick={()=>handleClick(prod)} >
-//             <h2 className="text-xl font-semibold mb-2">{store.storeName}</h2>
-//             <p className="text-gray-600 mb-2">Owner: {store.OwnerName}</p>
-//             <div className='hidden'>
-//  {owner=store.OwnerName} {stored=store.storeName}
-//             </div>
-           
-//           {localStorage.setItem("storeDetails",JSON.stringify({owner,store}))}
-
-//             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-//             {store.Products.map((prod, index) => (
-//   <div
-//     key={index}
-//     onClick={() => handleIncrease(store._id, index, event)} // clicking card increases qty
-//     className="relative bg-white p-4 rounded shadow flex flex-col justify-between cursor-pointer hover:shadow-lg transition"
-//   >
-//     {/* X button in top-right */}
-//     <button
-//       className="absolute top-2 right-2 bg-red-500 text-white rounded-full px-2 py-1 text-xs hover:bg-red-600"
-//       onClick={(e) => {
-//         e.stopPropagation(); // prevent triggering increase
-//         handleDecrease(store._id, index, e); // remove product
-//       }}
-//     >
-//       ✕
-//     </button>
-
-//     <h3 className="text-lg font-medium mb-2">{prod.name || prod.productName}</h3>
-//     <p className="text-gray-700 mb-2">Price: ₹{prod.price || prod.productPrice}</p>
-//     <p className="text-gray-700 mb-2">Quantity: {prod.quantity || 0}</p>
-//   </div>
-// ))}
-
-//             </div>
-//           </div>
-//         ))
-//       )}
-//       <div className="p-6 max-w-md mx-auto bg-white rounded-2xl shadow-lg mt-20">
-//       <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
-//         Store Items Printer
-//       </h2>
-
-//       <div className="mb-4 max-h-64 overflow-y-auto">
-//         <ul className="divide-y divide-gray-200">
-//           {getbilldata.map((item, index) => (
-//             <li key={index} className="py-2 flex justify-between text-gray-700 font-medium">
-//               <span>{item.name}</span>
-//               <span className="text-gray-900 font-semibold">
-//                 Qty: {item.quantity || 1} | ₹{item.actualPrice}
-//               </span>
-//             </li>
-//           ))}
-//         </ul>
-//       </div>
-
-//       <div className="flex flex-col gap-3">
-//         <button
-//           onClick={connectPrinter}
-//           className={`w-full px-4 py-2 rounded-lg font-semibold shadow-md transition ${
-//             connected
-//               ? "bg-green-500 hover:bg-green-600 text-white"
-//               : "bg-blue-500 hover:bg-blue-600 text-white"
-//           }`}
-//         >
-//           {connected ? "✅ Printer Connected" : "🔗 Connect Printer"}
-//         </button>
-
-//         <button
-//           onClick={printBill}
-//           disabled={!connected}
-//           className={`w-full px-4 py-2 rounded-lg font-semibold shadow-md transition ${
-//             connected
-//               ? "bg-indigo-500 hover:bg-indigo-600 text-white"
-//               : "bg-gray-400 text-gray-200 cursor-not-allowed"
-//           }`}
-//         >
-//           🖨️ Print Bill
-//         </button>
-//       </div>
-//     </div>
-//     </div>
-//   );
-// };
-
-// export default YourPostedProducts;
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -401,7 +15,7 @@ const YourPostedProducts = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://traxxx-5.onrender.com/api/getyourproducts",
+        "https://mymern-e51y.onrender.com/api/getyourproducts",
         { headers: { Authorization: `Bearer ${userToken}` } }
       );
       setAlldata(response.data);
@@ -413,7 +27,7 @@ const YourPostedProducts = () => {
   const fetchBillData = async () => {
     try {
       const response = await axios.get(
-        "https://traxxx-5.onrender.com/api/getstorebill",
+        "https://mymern-e51y.onrender.com/api/getstorebill",
         { headers: { Authorization: `Bearer ${userToken}` } }
       );
       setbilldata(response.data);
@@ -445,7 +59,7 @@ const YourPostedProducts = () => {
 
     // post bill data
     setallbilldata(prod);
-    axios.put("https://traxxx-5.onrender.com/api/poststorebill", prod, {
+    axios.put("https://mymern-e51y.onrender.com/api/poststorebill", prod, {
       headers: { Authorization: `Bearer ${userToken}` }
     }).then(() => fetchBillData());
 
@@ -456,7 +70,7 @@ const YourPostedProducts = () => {
   const handleRemove = async(store, prodIndex) => {
     
     try {
-          const response=await axios.delete(`https://traxxx-5.onrender.com/api/removeitemsfromcart`,
+          const response=await axios.delete(`https://mymern-e51y.onrender.com/api/removeitemsfromcart`,
             {
                   headers: { Authorization: `Bearer ${userToken}` },
                           data: { store } // 👈 put payload here
@@ -536,7 +150,7 @@ fetchBillData()
 
   //     await characteristic.writeValue(cutCommand);
 
-  //     await axios.delete("https://traxxx-5.onrender.com/api/deletestorebillprint", {
+  //     await axios.delete("https://mymern-e51y.onrender.com/api/deletestorebillprint", {
   //       headers: { Authorization: `Bearer ${userToken}` }
   //     });
 
@@ -608,7 +222,7 @@ const alignRight = ESC + 'a' + '\x02';
     }
     await characteristic.writeValue(cutCommand);
 
-    await axios.delete("https://traxxx-5.onrender.com/api/deletestorebillprint", {
+    await axios.delete("https://mymern-e51y.onrender.com/api/deletestorebillprint", {
       headers: { Authorization: `Bearer ${userToken}` }
     });
 

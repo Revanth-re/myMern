@@ -8,7 +8,7 @@
 //   // Fetching data function
 //   const FetchingData = async () => {
 //     try {
-//       const response = await axios.get("https://traxxx-5.onrender.com/api/getAll",{
+//       const response = await axios.get("https://mymern-e51y.onrender.com/api/getAll",{
 //         headers: { Authorization: `Bearer ${userToken}` },
 //       });
 //       // Assuming you want to slice from index 4 onwards
@@ -77,7 +77,7 @@ const BestSellers = ({ inp = 10 }) => {
   // Fetching data function
   const FetchingData = async () => {
     try {
-      const response = await axios.get("https://traxxx-5.onrender.com/api/getAll", {
+      const response = await axios.get("https://mymern-e51y.onrender.com/api/getAll", {
         headers: { Authorization: `Bearer ${userToken}` },
       });
 

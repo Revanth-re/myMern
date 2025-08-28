@@ -18,7 +18,7 @@
 
 //   const fetchData = async () => {
 //     // try {
-//       const response = await axios.get("https://traxxx-5.onrender.com/api/getAll",{
+//       const response = await axios.get("https://mymern-e51y.onrender.com/api/getAll",{
 //     headers: { Authorization: `Bearer ${userToken}` }
 //    });
 //    console.log(response,"response data");
@@ -105,7 +105,7 @@ const LowStocks = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://traxxx-5.onrender.com/api/getAll", {
+      const response = await axios.get("https://mymern-e51y.onrender.com/api/getAll", {
         headers: { Authorization: `Bearer ${userToken}` },
       });
 

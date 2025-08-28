@@ -5,7 +5,7 @@
 //     const handlePayment = async () => {
 //         try {
 //             // 1️⃣ Create order from backend
-//             const  data  = await axios.post("https://traxxx-5.onrender.com/api/create-order", {
+//             const  data  = await axios.post("https://mymern-e51y.onrender.com/api/create-order", {
 //                 amount: 50000 // amount in INR
 //             });
 //             console.log(data,"data");
@@ -62,7 +62,7 @@ const PaymentComponent = () => {
             const amountInPaise = amountInRupees;
 
             // 1️⃣ Create order from backend
-            const { data } = await axios.post("https://traxxx-5.onrender.com/api/create-order", {
+            const { data } = await axios.post("https://mymern-e51y.onrender.com/api/create-order", {
                 amount: amountInPaise
             });
 

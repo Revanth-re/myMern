@@ -14,7 +14,7 @@
        
 
     
-//     const response=await axios.get("https://traxxx-5.onrender.com/api/getkhatas",{
+//     const response=await axios.get("https://mymern-e51y.onrender.com/api/getkhatas",{
 //         headers:{Authorization:`Bearer ${userToken}`}
 //     })
 //     setAllData(response.data)
@@ -33,7 +33,7 @@
 //     try {
         
     
-// const response=await axios.delete(`https://traxxx-5.onrender.com/api/deletekhata/${item._id}`)
+// const response=await axios.delete(`https://mymern-e51y.onrender.com/api/deletekhata/${item._id}`)
 // FetchData()
 //     }
 // catch (error) {
@@ -48,7 +48,7 @@
     
 //     const money=i.totalMoney
 
-// const response=await axios.put(`https://traxxx-5.onrender.com/api/updatekhata/${i._id}`,{money},  {
+// const response=await axios.put(`https://mymern-e51y.onrender.com/api/updatekhata/${i._id}`,{money},  {
 //         headers: { "Content-Type": "application/json" }
 //       })
 
@@ -236,7 +236,7 @@ const UdhaarList = () => {
 
   const FetchData = async () => {
     try {
-      const response = await axios.get("https://traxxx-5.onrender.com/api/getkhatas", {
+      const response = await axios.get("https://mymern-e51y.onrender.com/api/getkhatas", {
         headers: { Authorization: `Bearer ${userToken}` },
       });
       setAllData(response.data);
@@ -251,7 +251,7 @@ const UdhaarList = () => {
 
   const DeletePayment = async (item) => {
     try {
-      await axios.delete(`https://traxxx-5.onrender.com/api/deletekhata/${item._id}`);
+      await axios.delete(`https://mymern-e51y.onrender.com/api/deletekhata/${item._id}`);
       FetchData();
     } catch (error) {
       console.log(error);
@@ -262,7 +262,7 @@ const UdhaarList = () => {
     try {
       const money = i.totalMoney;
       await axios.put(
-        `https://traxxx-5.onrender.com/api/updatekhata/${i._id}`,
+        `https://mymern-e51y.onrender.com/api/updatekhata/${i._id}`,
         { money },
         {
           headers: { "Content-Type": "application/json" },

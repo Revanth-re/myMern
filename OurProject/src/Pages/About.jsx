@@ -22,7 +22,7 @@
 
 //   const fetchProducts = async () => {
 //     try {
-//       const { data } = await axios.get("https://traxxx-5.onrender.com/api/getAll", {
+//       const { data } = await axios.get("https://mymern-e51y.onrender.com/api/getAll", {
 //         headers: { Authorization: `Bearer ${userToken}` },
 //       });
 
@@ -52,7 +52,7 @@
 
 //     try {
 //       await axios.put(
-//         `https://traxxx-5.onrender.com/api/update/${item._id}`,
+//         `https://mymern-e51y.onrender.com/api/update/${item._id}`,
 //         {
 //           counter: 1,
 //           quantity: item.productQuantity + 1,
@@ -79,7 +79,7 @@
 
 //     try {
 //       await axios.put(
-//         `https://traxxx-5.onrender.com/api/updateDec/${item._id}`,
+//         `https://mymern-e51y.onrender.com/api/updateDec/${item._id}`,
 //         { counter: -1 },
 //         { headers: { "Content-Type": "application/json" } }
 //       );
@@ -93,7 +93,7 @@
 //     e.stopPropagation();
 //     if (confirm("Are you sure you want to delete this product?")) {
 //       try {
-//         await axios.delete(`https://traxxx-5.onrender.com/api/delete/${item._id}`);
+//         await axios.delete(`https://mymern-e51y.onrender.com/api/delete/${item._id}`);
 //         setAllProducts((prev) => prev.filter((p) => p._id !== item._id));
 //       } catch (err) {
 //         console.error("Error deleting:", err);
@@ -304,7 +304,7 @@ const About = () => {
 
     try {
       await axios.put(
-        `https://traxxx-5.onrender.com/api/update/${item._id}`,
+        `https://mymern-e51y.onrender.com/api/update/${item._id}`,
         { counter: 1, quantity: item.productQuantity + 1 },
         { headers: { "Content-Type": "application/json" } }
       );
@@ -328,7 +328,7 @@ const About = () => {
 
     try {
       await axios.put(
-        `https://traxxx-5.onrender.com/api/updateDec/${item._id}`,
+        `https://mymern-e51y.onrender.com/api/updateDec/${item._id}`,
         { counter: -1 },
         { headers: { "Content-Type": "application/json" } }
       );
@@ -342,7 +342,7 @@ const About = () => {
     e.stopPropagation();
     if (confirm("Are you sure you want to delete this product?")) {
       try {
-        await axios.delete(`https://traxxx-5.onrender.com/api/delete/${item._id}`);
+        await axios.delete(`https://mymern-e51y.onrender.com/api/delete/${item._id}`);
         setAllProducts((prev) => prev.filter((p) => p._id !== item._id));
       } catch (err) {
         console.error("Error deleting:", err);

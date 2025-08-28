@@ -15,7 +15,7 @@
 // const userToken=data.token
 //   const fetchData = async () => {
 //     try {
-//       const response = await axios.get("https://traxxx-5.onrender.com/api/getAll",{
+//       const response = await axios.get("https://mymern-e51y.onrender.com/api/getAll",{
 //     headers: { Authorization: `Bearer ${userToken}` }
 //    });
 //    console.log(response.data);
@@ -124,7 +124,7 @@ const CheckExpires = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://traxxx-5.onrender.com/api/getAll", {
+      const response = await axios.get("https://mymern-e51y.onrender.com/api/getAll", {
         headers: { Authorization: `Bearer ${userToken}` },
       });
 
@@ -169,7 +169,7 @@ const CheckExpires = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://traxxx-5.onrender.com/api/delete/${id}`, {
+      await axios.delete(`https://mymern-e51y.onrender.com/api/delete/${id}`, {
         headers: { Authorization: `Bearer ${userToken}` },
       });
       fetchData(); // refresh list
