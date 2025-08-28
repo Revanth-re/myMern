@@ -477,8 +477,8 @@ const YourPostedProducts = () => {
       await axios.post(
         "https://mymern-e51y.onrender.com/api/printdetails",
         {
-          name: prod.name || prod.productName,
-          price: prod.price || prod.productSellingPrice,
+          PName: prod.name || prod.productName,
+          selling: prod.price || prod.productSellingPrice,
           quantity: 1, // backend will increment if already exists
         },
         { headers: { Authorization: `Bearer ${userToken}` } }
@@ -496,7 +496,7 @@ const YourPostedProducts = () => {
         "https://mymern-e51y.onrender.com/api/removeitemsfromcart",
         {
           headers: { Authorization: `Bearer ${userToken}` },
-          data: { store: { name: prod.name, price: prod.price } },
+          store: {   name: prod.productname, price: prod.productSellingPrice  },
         }
       );
       fetchBillData();
