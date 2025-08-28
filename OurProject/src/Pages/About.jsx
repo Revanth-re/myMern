@@ -268,7 +268,7 @@ const About = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/getAll`, {
+      const response = await axios.get(`https://mymern-e51y.onrender.com/api/getAll`, {
         headers: { Authorization: `Bearer ${userToken}` },
       });
 
