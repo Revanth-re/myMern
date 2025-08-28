@@ -313,30 +313,29 @@ const About = () => {
       fetchProducts();
     }
   };
+// const handleDecrease = async (item, e) => {
+// //     e.stopPropagation();
+// //     if (item.productQuantity <= 0) return;
 
-  const handleDecrease = async (item, e) => {
-    e.stopPropagation();
-    if (item.isExpired || item.productQuantity <= 0) return;
+// //     setAllProducts((prev) =>
+// //       prev.map((p) =>
+// //         p._id === item._id
+// //           ? { ...p, productQuantity: p.productQuantity - 1 }
+// //           : p
+// //       )
+// //     );
 
-    setAllProducts((prev) =>
-      prev.map((p) =>
-        p._id === item._id
-          ? { ...p, productQuantity: p.productQuantity - 1 }
-          : p
-      )
-    );
-
-    try {
-      await axios.put(
-        `https://mymern-e51y.onrender.com/api/updateDec/${item._id}`,
-        { counter: -1 },
-        { headers: { "Content-Type": "application/json" } }
-      );
-    } catch (err) {
-      console.error("Error decreasing:", err);
-      fetchProducts();
-    }
-  };
+// //     try {
+// //       await axios.put(
+// //         `https://mymern-e51y.onrender.com/api/updateDec/${item._id}`,
+// //         { counter: -1 },
+// //         { headers: { "Content-Type": "application/json" } }
+// //       );
+// //     } catch (err) {
+// //       console.error("Error decreasing:", err);
+// //       fetchProducts();
+// //     }
+// //   };
 
   const handleDelete = async (item, e) => {
     e.stopPropagation();
