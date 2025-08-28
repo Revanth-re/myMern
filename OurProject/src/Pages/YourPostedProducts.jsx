@@ -456,39 +456,37 @@ const YourPostedProducts = () => {
   }, []);
 
   // Add/Increase product in bill
-  const handleIncrease = async (storeId, prodIndex, prod) => {
-    // update UI state
-    setAlldata((prev) =>
-      prev.map((store) =>
-        store._id === storeId
-          ? {
-              ...store,
-              Products: store.Products.map((p, i) =>
-                i === prodIndex
-                  ? { ...p, quantity: (p.quantity || 0) + 1 }
-                  : p
-              ),
-            }
-          : store
-      )
-    );
+const handleIncrease = async (storeId, prodIndex, prod) => {
+  // 1. Update state UI
+  setAlldata(prev =>
+    prev.map(store =>
+      store._id === storeId
+        ? {
+            ...store,
+            Products: store.Products.map((p, i) =>
+              i === prodIndex ? { ...p, quantity: (p.quantity || 0) + 1 } : p
+            )
+          }
+        : store
+    )
+  );
 
-    try {
+  // 2. Send to backend
+  try {
     await axios.post("https://mymern-e51y.onrender.com/api/printdetails", {
-  productName: prod.productname,
-  actualPrice: prod.productSellingPrice,
-  quantity: 1
-}, {
-  headers: {
-    Authorization: `Bearer ${userToken}`
-  }
-});
+      productName: prod.productName || prod.name,
+      actualPrice: prod.productSellingPrice || prod.price,
+      quantity: (prod.quantity || 0) + 1
+    }, {
+      headers: { Authorization: `Bearer ${userToken}` }
+    });
 
-      fetchBillData();
-    } catch (err) {
-      console.error("❌ Error adding to bill:", err);
-    }
-  };
+    // 3. Refresh bill/cart
+    fetchBillData();
+  } catch (err) {
+    console.error("❌ Error adding to bill:", err.response?.data || err.message);
+  }
+};
 
   // Remove single item from bill
   const handleRemove = async (prod) => {
