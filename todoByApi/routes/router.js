@@ -56,7 +56,7 @@ router.delete("/api/deletebillitems",VerifyToken,deletestorebillItems)
 router.post("/api/poststoredata",VerifyToken,postStoreData)
 
 router.get("/api/getyourproducts",VerifyToken,getYourProducts)
-// ATHL450 USB device connect
+
 
 // router.post("/api/print",usbConnection)
 router.post("/api/create-order", async (req, res) => {
@@ -156,16 +156,21 @@ router.put("/api/update/:id", updateTodos)
 
     router.put("/api/updateDec/:id",updateDecrease)
 
-    router.delete(`/api/delete/:id`,deletetodos)
+    router.delete("/api/delete/:id",deletetodos)
 
     router.get("/api/MoreDetails/:id",MoreDetails)
 
-router.get("/api/MoreDetails/:id",getOne)
+// // router.get("/api/MoreDetails/:id",getOne)
 
 router.put("/api/expiryItems",expiryDateHandler)
 router.put("/api/updateItems",updateExpiredItems)
 
 
+router.stack.forEach((r) => {
+  if (r.route && r.route.path) {
+    console.log("✅ Loaded route:", r.route.stack[0].method.toUpperCase(), r.route.path);
+  }
+});
 
 
 
