@@ -340,9 +340,11 @@ const handleDecrease = async (item, e) => {
       {
         pName: item.productname,
         selling: item.productSellingPrice
-         // 👈 means 1 unit decreased
+     
       },
-      { headers: { "Content-Type": "application/json" } }
+      {
+       headers: { Authorization: `Bearer ${userToken}` }
+      }
     );
   } catch (err) {
     console.error("Error decreasing:", err);
