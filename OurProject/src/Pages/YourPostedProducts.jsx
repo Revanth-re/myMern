@@ -41,29 +41,75 @@ const YourPostedProducts = () => {
     fetchData();
   }, []);
 
-  const handleIncrease = (storeId, prodIndex, prod) => {
-    setAlldata(prev =>
-      prev.map(store =>
-        store._id === storeId
-          ? {
-              ...store,
-              Products: store.Products.map((p, index) =>
-                index === prodIndex
-                  ? { ...p, quantity: (p.quantity || 0) + 1 }
-                  : p
-              )
-            }
-          : store
-      )
+  // Inside your React component
+
+const handleIncrease = async (storeId, prodIndex, prod) => {
+  // 1. Update quantity in UI (state)
+  setAlldata(prev =>
+    prev.map(store =>
+      store._id === storeId
+        ? {
+            ...store,
+            Products: store.Products.map((p, index) =>
+              index === prodIndex
+                ? { ...p, quantity: (p.quantity || 0) + 1 }
+                : p
+            )
+          }
+        : store
+    )
+  );
+
+  // 2. Prepare payload for backend
+  const payload = {
+    storeId,
+    productId: prod._id,
+    name: prod.productName || prod.name,
+    price: prod.productSellingPrice || prod.price,
+    quantity: (prod.quantity || 0) + 1,
+    image: prod.image || "",
+  };
+
+  try {
+    // 3. Post to backend
+    await axios.post(
+      "https://mymern-e51y.onrender.com/api/poststorebill",
+      payload,
+      { headers: { Authorization: `Bearer ${userToken}` } }
     );
 
-    // post bill data
-    setallbilldata(prod);
-    axios.put("https://mymern-e51y.onrender.com/api/poststorebill", prod, {
-      headers: { Authorization: `Bearer ${userToken}` }
-    }).then(() => fetchBillData());
+    // 4. Refresh bill/cart data
+    fetchBillData();
+  } catch (err) {
+    console.error("❌ Error posting to bill:", err);
+  }
+};
 
-  };
+
+
+  // const handleIncrease = (storeId, prodIndex, prod) => {
+  //   setAlldata(prev =>
+  //     prev.map(store =>
+  //       store._id === storeId
+  //         ? {
+  //             ...store,
+  //             Products: store.Products.map((p, index) =>
+  //               index === prodIndex
+  //                 ? { ...p, quantity: (p.quantity || 0) + 1 }
+  //                 : p
+  //             )
+  //           }
+  //         : store
+  //     )
+  //   );
+
+  //   // post bill data
+  //   setallbilldata(prod);
+  //   axios.put("https://mymern-e51y.onrender.com/api/poststorebill", prod, {
+  //     headers: { Authorization: `Bearer ${userToken}` }
+  //   }).then(() => fetchBillData());
+
+  // };
 
 
 
