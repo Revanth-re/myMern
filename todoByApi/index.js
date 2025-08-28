@@ -75,7 +75,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // ✅ CORS configuration
 app.use(cors({
-  origin: 'https://track-one-sepia.vercel.app', // change if needed for dev
+  origin: 'https://my-mern.vercel.app', // change if needed for dev
   methods: ['GET','POST','PUT','DELETE','OPTIONS'],
   allowedHeaders: ['Content-Type','Authorization']
 }));
