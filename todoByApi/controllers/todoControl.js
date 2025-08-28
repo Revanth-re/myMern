@@ -447,32 +447,73 @@ const LoginController=async(req,res)=>{
 
 
 
+// const postPrints = async (req, res) => {
+//   try {
+//     const userId = req.userId; // assuming middleware sets this
+//     const { pName, selling, quantity: quantityFromBody } = req.body;
+
+//     // Ensure quantity is a number
+//     const quantity =Number(quantityFromBody)|| 1;
+
+//     // Check if product already exists for this user
+//     const existingProduct = await printModel.findOne({
+//       productName: pName,
+//       actualPrice: selling,
+
+//       uploadedBy: userId,
+//     });
+
+//     if (existingProduct) {
+//       // If exists, increment quantity
+//       existingProduct.quantity += 1;
+//       const updatedProduct = await existingProduct.save();
+//       return res.status(200).json(updatedProduct);
+//     } else {
+//       // If not exists, create new product
+//       const newProduct = new printModel({
+//         productName: pName,
+//         actualPrice: selling,
+//         uploadedBy: userId,
+//         quantity,
+//       });
+//       const savedProduct = await newProduct.save();
+//       return res.status(200).json(savedProduct);
+//     }
+//   } catch (err) {
+//     console.error(err);
+//     return res.status(500).json({ message: "Server error", error: err.message });
+//   }
+// }
 const postPrints = async (req, res) => {
   try {
-    const userId = req.userId; // assuming middleware sets this
-    const { pName, selling, quantity: quantityFromBody } = req.body;
+    const userId = req.userId; // from auth middleware
+    const { productName, actualPrice, quantity: quantityFromBody } = req.body;
+
+    // Validate request
+    if (!productName || !actualPrice) {
+      return res.status(400).json({ message: "Product name and price are required" });
+    }
 
     // Ensure quantity is a number
-    const quantity = 1;
+    const quantity = Number(quantityFromBody) || 1;
 
     // Check if product already exists for this user
     const existingProduct = await printModel.findOne({
-      productName: pName,
-      actualPrice: selling,
-
+      productName,
+      actualPrice,
       uploadedBy: userId,
     });
 
     if (existingProduct) {
       // If exists, increment quantity
-      existingProduct.quantity += 1;
+      existingProduct.quantity += quantity;
       const updatedProduct = await existingProduct.save();
       return res.status(200).json(updatedProduct);
     } else {
       // If not exists, create new product
       const newProduct = new printModel({
-        productName: pName,
-        actualPrice: selling,
+        productName,
+        actualPrice,
         uploadedBy: userId,
         quantity,
       });
@@ -480,10 +521,11 @@ const postPrints = async (req, res) => {
       return res.status(200).json(savedProduct);
     }
   } catch (err) {
-    console.error(err);
+    console.error("Error in postPrints:", err);
     return res.status(500).json({ message: "Server error", error: err.message });
   }
-}
+};
+
 
 
 

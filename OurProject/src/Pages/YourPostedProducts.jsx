@@ -474,15 +474,16 @@ const YourPostedProducts = () => {
     );
 
     try {
-      await axios.post(
-        "https://mymern-e51y.onrender.com/api/printdetails",
-        {
-          pName: prod.name || prod.productName,
-          selling: prod.price || prod.productSellingPrice,
-          quantity: 1, // backend will increment if already exists
-        },
-        { headers: { Authorization: `Bearer ${userToken}` } }
-      );
+    await axios.post("https://mymern-e51y.onrender.com/api/printdetails", {
+  productName: prod.productname,
+  actualPrice: prod.productSellingPrice,
+  quantity: 1
+}, {
+  headers: {
+    Authorization: `Bearer ${userToken}`
+  }
+});
+
       fetchBillData();
     } catch (err) {
       console.error("❌ Error adding to bill:", err);
