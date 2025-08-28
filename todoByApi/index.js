@@ -98,7 +98,7 @@ app.use(express.urlencoded({ extended: true }));
 //   methods: ['GET','POST','PUT','DELETE','OPTIONS'],
 //   allowedHeaders: ['Content-Type','Authorization']
 // }));
-const cors = require("cors");
+// const cors = require("cors");
 
 const allowedOrigins = [
   "http://localhost:5173",        // for local dev
