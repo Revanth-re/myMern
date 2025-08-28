@@ -473,9 +473,9 @@ const handleIncrease = async (storeId, prodIndex, prod) => {
 
   // 2. Send to backend
   try {
-    await axios.post("https://mymern-e51y.onrender.com/api/printdetails", {
-      productName: prod.productName || prod.name,
-      actualPrice: prod.productSellingPrice || prod.price,
+    await axios.post("https://mymern-e51y.onrender.com/api/poststorebill", {
+      name: prod.productname || prod.name,
+      price: prod.productSellingPrice || prod.price,
       quantity: (prod.quantity || 0) + 1
     }, {
       headers: { Authorization: `Bearer ${userToken}` }

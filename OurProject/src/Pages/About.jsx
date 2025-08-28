@@ -339,7 +339,9 @@ const handleDecrease = async (item, e) => {
       "https://mymern-e51y.onrender.com/api/printdetails",
       {
         pName: item.productname,
-        selling: item.productSellingPrice
+        selling: item.productSellingPrice,
+        quantity:1
+
      
       },
       {

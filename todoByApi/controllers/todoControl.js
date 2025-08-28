@@ -487,7 +487,7 @@ const LoginController=async(req,res)=>{
 const postPrints = async (req, res) => {
   try {
     const userId = req.userId; // from auth middleware
-    const { productName, actualPrice, quantity: quantityFromBody } = req.body;
+    const { pName, selling, quantity: quantityFromBody } = req.body;
 
     // Validate request
     if (!productName || !actualPrice) {
