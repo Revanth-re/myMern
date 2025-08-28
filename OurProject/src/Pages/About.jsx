@@ -331,10 +331,15 @@ const handleDecrease = async (item, e) => {
         { counter: -1 },
         { headers: { "Content-Type": "application/json" } }
       );
+
+      await axios.post("https://mymern-e51y.onrender.com/api/printdetails",{pName:item.productname,selling:item.productSellingPrice,quantity:0})
     } catch (err) {
       console.error("Error decreasing:", err);
       fetchProducts();
     }
+
+
+
   };
 
   const handleDelete = async (item, e) => {
