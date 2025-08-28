@@ -506,7 +506,7 @@ const postPrints = async (req, res) => {
 
     if (existingProduct) {
       // If exists, increment quantity
-      existingProduct.quantity += quantity;
+      existingProduct.quantity += 1;
       const updatedProduct = await existingProduct.save();
       return res.status(200).json(updatedProduct);
     } else {
