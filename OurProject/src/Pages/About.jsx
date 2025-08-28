@@ -314,33 +314,42 @@ const About = () => {
     }
   };
 const handleDecrease = async (item, e) => {
-    e.stopPropagation();
-    if (item.productQuantity <= 0) return;
+  e.stopPropagation();
+  if (item.productQuantity <= 0) return;
 
-    setAllProducts((prev) =>
-      prev.map((p) =>
-        p._id === item._id
-          ? { ...p, productQuantity: p.productQuantity - 1 }
-          : p
-      )
+  // Update UI immediately
+  setAllProducts((prev) =>
+    prev.map((p) =>
+      p._id === item._id
+        ? { ...p, productQuantity: p.productQuantity - 1 }
+        : p
+    )
+  );
+
+  try {
+    // Update in DB
+    await axios.put(
+      `https://mymern-e51y.onrender.com/api/updateDec/${item._id}`,
+      { counter: -1 },
+      { headers: { "Content-Type": "application/json" } }
     );
 
-    try {
-      await axios.put(
-        `https://mymern-e51y.onrender.com/api/updateDec/${item._id}`,
-        { counter: -1 },
-        { headers: { "Content-Type": "application/json" } }
-      );
+    // Send print details with correct quantity change
+    await axios.post(
+      "https://mymern-e51y.onrender.com/api/printdetails",
+      {
+        pName: item.productname,
+        selling: item.productSellingPrice
+         // 👈 means 1 unit decreased
+      },
+      { headers: { "Content-Type": "application/json" } }
+    );
+  } catch (err) {
+    console.error("Error decreasing:", err);
+    fetchProducts(); // fallback re-fetch
+  }
+};
 
-      await axios.post("https://mymern-e51y.onrender.com/api/printdetails",{pName:item.productname,selling:item.productSellingPrice,quantity:0})
-    } catch (err) {
-      console.error("Error decreasing:", err);
-      fetchProducts();
-    }
-
-
-
-  };
 
   const handleDelete = async (item, e) => {
     e.stopPropagation();
