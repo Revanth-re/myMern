@@ -708,7 +708,8 @@ try {
 }
 
 const removeItem=async(req,res)=>{
-  const {name} =req.body
+  const {prod} =req.body
+  const {name}=prod
   
   
 
