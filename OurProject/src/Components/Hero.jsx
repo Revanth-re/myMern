@@ -551,7 +551,7 @@ const Hero = () => {
 
     try {
       const res = await axios.post(
-        "https://mymern-e51y.onrender.com/api/product",
+        "https://mymern-e51y.onrender.com/api/products",
         HandleProducts,
         {
           headers: { Authorization: `Bearer ${userToken}` },
