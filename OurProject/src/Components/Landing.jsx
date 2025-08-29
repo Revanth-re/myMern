@@ -94,7 +94,7 @@ Navigate("/about")
                 Your all-in-one inventory management solution for small retailers.
                 Track stock, get expiry alerts, and keep your shop running smoothly.
               </p>
-              <button className="px-6 py-3 bg-blue-600 text-black rounded-lg font-semibold hover:bg-yellow-400 transition bg-gradient-to-r from-green-600 to-blue-600 ">
+              <button onClick={()=>Navigate("/login")} className="px-6 py-3 bg-blue-600 text-black rounded-lg font-semibold hover:bg-yellow-400 transition bg-gradient-to-r from-green-600 to-blue-600 ">
                 Get Started
               </button>
             </div>
