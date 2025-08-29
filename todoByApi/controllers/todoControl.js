@@ -106,25 +106,17 @@ const getAllProducts = async (req, res) => {
 // Add a new todo
 const addProducts = async (req, res) => {
 
-const {FinalData}=req.body
+const{HandleProducts}=req.body
   console.log(req.userId,"userid");
-  
   
   try {
     // const data=req.body
     // console.log(data);
 
     const newProduct = new todosModel({
-      productname:FinalData.productName,
-      productActualPrice:FinalData.productActualPrice,
-      productSellingPrice:FinalData.productSellingPrice,
-      productQuantity:FinalData.productQuantity,
-      productCategory:FinalData.productCategory,
-      ProductExpiry:FinalData.ProductExpiry,
-        inpValue:FinalData.productQuantity,
-      uploadedBy: req.userId,
-    
-    
+productname:HandleProducts.productname
+      
+
      
        // userId comes from middleware
     })
@@ -135,11 +127,9 @@ console.log(user,"user");
     res.json(user);
 
   } catch (error) {
-    res.status(500).json(error);
+    res.status(400).json(error);
+
   }}
-
-
-
 // Update a todo by ID
 
 // const updateTodos= async (req, res) => {

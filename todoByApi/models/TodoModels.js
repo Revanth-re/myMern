@@ -1,19 +1,20 @@
 const mongoose=require("mongoose")
 
 
-
 const todosSchema = new mongoose.Schema({
+
   productname: String,
-  productCategory: String,
-  productQuantity: Number,
+  // productCategory: String,
+  // productQuantity: Number,
  
-  productActualPrice: Number,
-  productSellingPrice: Number,
-  ProductExpiry: String,
-  base64: String, // Image in Base64
-  inpValue:Number,
-  uploadedBy:String
+  // productActualPrice: Number,
+  // productSellingPrice: Number,
+  // ProductExpiry: String,
+  // base64: String, // Image in Base64
+  // inpValue:Number,
+  // uploadedBy:String
 });
+
 
 const kathasData = new mongoose.Schema({
 

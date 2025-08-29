@@ -91,7 +91,7 @@ router.post("/api/addkhatas",VerifyToken,addKhatas)
 router.get("/api/getAll",VerifyToken,getAllProducts)
 router.get("/api/getkhatas",VerifyToken,getKhatas)
 
-router.post("/api/products",VerifyToken, addProducts)
+router.post("/api/product", addProducts)
 
 router.post("/api/signup",async(req,res)=>{
 
