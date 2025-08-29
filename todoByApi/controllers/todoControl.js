@@ -106,16 +106,20 @@ const getAllProducts = async (req, res) => {
 // Add a new todo
 const addProducts = async (req, res) => {
 
-
+const {FinalData}=req.body
   console.log(req.userId,"userid");
+  
   
   try {
     // const data=req.body
     // console.log(data);
 
     const newProduct = new todosModel({
+        inpValue:FinalData.productQuantity,
       uploadedBy: req.userId,
-      ...req.body,
+    
+    
+     
        // userId comes from middleware
     })
     const user=await newProduct.save()
@@ -219,7 +223,7 @@ const updateTodos = async (req, res) => {
 
     // Calculate new values
     const updatedQuantity = Number(gettodo.productQuantity) + Number(counter);
-    const newValue = Number(quantity); // Or your intended calculation
+    const newValue = Number(quantity+1); // Or your intended calculation
 
     // Update the product
     const updatedProduct = await todosModel.findByIdAndUpdate(
@@ -709,12 +713,12 @@ try {
 
 const removeItem=async(req,res)=>{
   const {prod} =req.body
-  const {name}=prod
+ 
   
   
 
   try {
-    const deleted=await storePrintModel.deleteMany({name:name})
+    const deleted=await storePrintModel.deleteMany({name:prod.name})
     res.json(deleted)
     console.log(
       deleted ,"reulted"
@@ -728,6 +732,8 @@ const removeItem=async(req,res)=>{
   }
 
 }
+
+
 const deletestorebillprint=async(req,res)=>{
 
   // console.log("odiyamma badava");
