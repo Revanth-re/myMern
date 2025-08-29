@@ -491,11 +491,15 @@ const handleIncrease = async (storeId, prodIndex, prod) => {
 };
 
   // Remove single item from bill
+  
+  
   const handleRemove = async (prod) => {
+  console.log(prod.name);
+  
     try {
       await axios.delete(
         "https://mymern-e51y.onrender.com/api/removeitemsfromcart",
-        {name:prod.name},
+        prod,
         {
           headers: { Authorization: `Bearer ${userToken}` },
 
@@ -646,7 +650,7 @@ const handleIncrease = async (storeId, prodIndex, prod) => {
                 </button>
 
                 <img
-                  src={prod.image || "https://via.placeholder.com/150"}
+                  src={prod.base64 || "https://via.placeholder.com/150"}
                   alt={prod.name || prod.productName}
                   className="w-full h-36 object-cover rounded-lg mb-3"
                 />
