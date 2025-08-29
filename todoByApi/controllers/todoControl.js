@@ -115,6 +115,12 @@ const {FinalData}=req.body
     // console.log(data);
 
     const newProduct = new todosModel({
+      productname:FinalData.productName,
+      productActualPrice:FinalData.productActualPrice,
+      productSellingPrice:FinalData.productSellingPrice,
+      productQuantity:FinalData.productQuantity,
+      productCategory:FinalData.productCategory,
+      ProductExpiry:FinalData.ProductExpiry,
         inpValue:FinalData.productQuantity,
       uploadedBy: req.userId,
     
