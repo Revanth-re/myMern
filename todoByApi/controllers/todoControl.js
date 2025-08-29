@@ -462,8 +462,7 @@ const postPrints = async (req, res) => {
 
     // Check if product already exists for this user
     const existingProduct = await printModel.findOne({
-      productName:pName,
-      uploadedBy: userId
+      productName:pName
     });
 
     if (existingProduct) {
@@ -473,7 +472,7 @@ const postPrints = async (req, res) => {
       actualPrice:selling,
       quantity:Number(quantity+1),
 
-      uploadedBy: req.user_id,
+      uploadedBy: req.userId,
 
     
 
@@ -488,7 +487,7 @@ const postPrints = async (req, res) => {
       const newProduct = new printModel({
         productName:pName,
         actualPrice:selling,
-        uploadedBy: userId,
+        uploadedBy: req.userId,
         quantity:1
       });
       const savedProduct = await newProduct.save();
@@ -709,9 +708,7 @@ try {
 }
 
 const removeItem=async(req,res)=>{
-  const {store}=req.body
-  const {name,price}=store
-  console.log(store,"name,price");
+  const {name} =req.body
   
   
 

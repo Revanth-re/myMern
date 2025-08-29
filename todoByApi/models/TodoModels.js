@@ -38,7 +38,7 @@ const printDetails=new mongoose.Schema({
   productName:String,
   actualPrice:Number,
   uploadedBy:String,
-  quantity:{type:Number,default:1}
+  quantity:Number
   
   
 
