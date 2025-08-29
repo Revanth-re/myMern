@@ -440,7 +440,7 @@ const YourPostedProducts = () => {
   const fetchBillData = async () => {
     try {
       const res = await axios.get(
-        "https://mymern-e51y.onrender.com/api/getprintdetails",
+        "https://mymern-e51y.onrender.com/api/getstorebill",
         { headers: { Authorization: `Bearer ${userToken}` } }
       );
       setbilldata(res.data);
@@ -472,11 +472,13 @@ const handleIncrease = async (storeId, prodIndex, prod) => {
   );
 
   // 2. Send to backend
+  console.log(prod,"productssss");
+  
   try {
-    await axios.post("https://mymern-e51y.onrender.com/api/poststorebill", {
-      name: prod.productname || prod.name,
-      price: prod.productSellingPrice || prod.price,
-      quantity: (prod.quantity || 0) + 1
+    await axios.post("https://mymern-e51y.onrender.com/api/printstorebill", {
+      name:  prod.name,
+      price: prod.price,
+      quantity:Number(1)
     }, {
       headers: { Authorization: `Bearer ${userToken}` }
     });

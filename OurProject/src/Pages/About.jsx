@@ -325,6 +325,7 @@ const handleDecrease = async (item, e) => {
         : p
     )
   );
+console.log(item,"itemm");
 
   try {
     // Update in DB
@@ -336,7 +337,7 @@ const handleDecrease = async (item, e) => {
 
     // Send print details with correct quantity change
     await axios.post(
-      "http://localhost:5000/api/printdetails",
+      "https://mymern-e51y.onrender.com/api/printdetails",
       {
         pName: item.productname,
         selling: item.productSellingPrice,
