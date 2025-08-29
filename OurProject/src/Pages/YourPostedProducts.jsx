@@ -495,9 +495,10 @@ const handleIncrease = async (storeId, prodIndex, prod) => {
     try {
       await axios.delete(
         "https://mymern-e51y.onrender.com/api/removeitemsfromcart",
+        {name:prod.name},
         {
           headers: { Authorization: `Bearer ${userToken}` },
-          data: {   name: prod.productname, price: prod.productSellingPrice  },
+
         }
       );
       fetchBillData();

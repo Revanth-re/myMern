@@ -335,8 +335,10 @@ console.log(item,"itemm");
       { headers: { "Content-Type": "application/json" } }
     );
 
+    console.log(item,"product");
+    
     // Send print details with correct quantity change
-    await axios.post(
+    const response=await axios.post(
       "https://mymern-e51y.onrender.com/api/printdetails",
       {
         pName: item.productname,
@@ -349,6 +351,10 @@ console.log(item,"itemm");
        headers: { Authorization: `Bearer ${userToken}` }
       }
     );
+    console.log(response,"response post");
+    
+
+
   } catch (err) {
     console.error("Error decreasing:", err);
     fetchProducts(); // fallback re-fetch
