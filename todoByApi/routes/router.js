@@ -41,7 +41,7 @@ console.log(pay.orders,"pay");
 
 
 
-router.put("/api/poststorebill",VerifyToken,printStoreBill)
+router.post("/api/printstorebill",VerifyToken,printStoreBill)
 router.get("/api/getstorebill",VerifyToken,getStoreBill)
 router.delete("/api/removeitemsfromcart",removeItem)
 
@@ -128,7 +128,7 @@ router.post("/api/login", async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const isPasswordValid = await bcrypt.compare(password, userData.password);
+    const isPasswordValid = bcrypt.compare(password, userData.password);
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid password" });
     }

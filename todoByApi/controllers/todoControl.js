@@ -686,7 +686,7 @@ const printStoreBill = async (req, res) => {
       const newProduct = new storePrintModel({
         name,
         price,
-        quantity: Number(quantity || 1),
+        quantity: quantity,
         uploadedBy: userId
       });
       const savedProduct = await newProduct.save();
