@@ -285,6 +285,8 @@ const Hero = () => {
     productActualPrice: "",
     productSellingPrice: "",
     ProductExpiry: "",
+    inpValue:""
+
   });
 
   const [base64, setBase64Image] = useState(image);
@@ -307,7 +309,7 @@ const Hero = () => {
           headers: { Authorization: `Bearer ${userToken}` },
         }
       );
-      console.log(res);
+      console.log(res,"resulted data");
       alert("✅ Product saved!");
       setShowForm(false); // hide after submit
     } catch (err) {

@@ -209,85 +209,98 @@ const AddOwnStore = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-20 p-6 bg-white shadow-md rounded-lg">
-      <h2 className="text-2xl font-bold mb-4 text-center">Add Your Store / Products</h2>
+   <div className="max-w-full sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto mt-10 sm:mt-20 p-4 sm:p-6 bg-white shadow-md rounded-lg">
+  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 text-center">
+    Add Your Store / Products
+  </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {!storeExists && (
-          <>
-            <div>
-              <label className="block mb-1 font-medium">Store Name</label>
-              <input
-                type="text"
-                value={storeName}
-                onChange={(e) => setStoreName(e.target.value)}
-                className="w-full border px-3 py-2 rounded-md"
-              />
-            </div>
+  <form onSubmit={handleSubmit} className="space-y-4">
+    {!storeExists && (
+      <>
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
+          <div className="flex-1">
+            <label className="block mb-1 font-medium text-sm sm:text-base">
+              Store Name
+            </label>
+            <input
+              type="text"
+              value={storeName}
+              onChange={(e) => setStoreName(e.target.value)}
+              className="w-full border px-3 py-2 rounded-md text-sm sm:text-base"
+            />
+          </div>
 
-            <div>
-              <label className="block mb-1 font-medium">Owner Name</label>
-              <input
-                type="text"
-                value={storeOwner}
-                onChange={(e) => setStoreOwner(e.target.value)}
-                className="w-full border px-3 py-2 rounded-md"
-              />
-            </div>
-            <hr className="my-4" />
-          </>
-        )}
-
-        <h3 className="text-lg font-semibold mb-2">Add Products</h3>
-        <div className="flex gap-2">
-          <input
-            type="text"
-            placeholder="Product Name"
-            value={productName}
-            onChange={(e) => setProductName(e.target.value)}
-            className="flex-1 border px-3 py-2 rounded-md"
-          />
-          <input
-            type="number"
-            placeholder="Price"
-            value={productPrice}
-            onChange={(e) => setProductPrice(e.target.value)}
-            className="w-24 border px-3 py-2 rounded-md"
-          />
-          <button
-            onClick={addProduct}
-            className="bg-blue-500 text-white px-3 py-2 rounded-md"
-          >
-            Add
-          </button>
+          <div className="flex-1">
+            <label className="block mb-1 font-medium text-sm sm:text-base">
+              Owner Name
+            </label>
+            <input
+              type="text"
+              value={storeOwner}
+              onChange={(e) => setStoreOwner(e.target.value)}
+              className="w-full border px-3 py-2 rounded-md text-sm sm:text-base"
+            />
+          </div>
         </div>
+        <hr className="my-4" />
+      </>
+    )}
 
-        {products.length > 0 && (
-          <ul className="mt-2 border rounded-md p-2">
-            {products.map((p, i) => (
-              <li key={i} className="flex justify-between py-1">
-                <span>{p.name}</span>
-                <span>₹{p.price}</span>
-              </li>
-            ))}
-          </ul>
-        )}
+    <h3 className="text-lg sm:text-xl font-semibold mb-2">
+      Add Products
+    </h3>
 
-        <button
-          type="submit"
-          className="w-full bg-green-500 text-white py-2 rounded-md mt-4"
-        >
-          Save
-        </button>
-      </form>
-
+    <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
+      <input
+        type="text"
+        placeholder="Product Name"
+        value={productName}
+        onChange={(e) => setProductName(e.target.value)}
+        className="flex-1 border px-3 py-2 rounded-md text-sm sm:text-base"
+      />
+      <input
+        type="number"
+        placeholder="Price"
+        value={productPrice}
+        onChange={(e) => setProductPrice(e.target.value)}
+        className="w-full sm:w-24 border px-3 py-2 rounded-md text-sm sm:text-base"
+      />
       <button
-        onClick={() => Navigate("/yourpostedproducts")}
-        className="w-full bg-gray-700 text-white py-2 rounded-md mt-4"
+        type="button"
+        onClick={addProduct}
+        className="bg-blue-500 text-white px-3 py-2 rounded-md text-sm sm:text-base"
       >
-        Your Products
+        Add
       </button>
     </div>
+
+    {products.length > 0 && (
+      <ul className="mt-2 border rounded-md p-2 max-h-60 overflow-y-auto">
+        {products.map((p, i) => (
+          <li key={i} className="flex justify-between py-1 text-sm sm:text-base">
+            <span>{p.name}</span>
+            <span>₹{p.price}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    <button
+      type="submit"
+      className="w-full bg-green-500 text-white py-2 rounded-md mt-4 text-sm sm:text-base"
+    >
+      Save
+    </button>
+  </form>
+
+  <button
+    onClick={() => Navigate("/yourpostedproducts")}
+    className="w-full bg-gray-700 text-white py-2 rounded-md mt-4 text-sm sm:text-base"
+  >
+    Your Products
+  </button>
+</div>
+
   );
 };
 
