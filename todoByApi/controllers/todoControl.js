@@ -1,5 +1,5 @@
 
-const { todosModel,userModel ,kathasModel, printModel,storeModel, storePrintModel, additionalModel} = require("../models/TodoModels.js");
+const { anotherModel,todosModel,userModel ,kathasModel, printModel,storeModel, storePrintModel, additionalModel} = require("../models/TodoModels.js");
 const Razorpay=require("razorpay")
 // const escpos = require('escpos');
 
@@ -106,15 +106,16 @@ const getAllProducts = async (req, res) => {
 // Add a new todo
 const addProducts = async (req, res) => {
 
-const{HandleProducts}=req.body
+const{productname}=req.body
   console.log(req.userId,"userid");
   
   try {
     // const data=req.body
     // console.log(data);
 
-    const newProduct = new todosModel({
-productname:HandleProducts.productname
+    const newProduct =  new anotherModel({
+
+productname:productname
       
 
      
@@ -130,82 +131,7 @@ console.log(user,"user");
     res.status(400).json(error);
 
   }}
-// Update a todo by ID
 
-// const updateTodos= async (req, res) => {
-//   let gettodo;
-//   try {
-//     const { productQuantity, dupQuantity } = req.body;
-//          gettodo = await todosModel.findById(id);
-//     const updated=Number(gettodo+1)
-//     const Value=Number(dupQuantity)
-//     console.log(Value);
-    
-
-//     const updatedProduct = await Product.findByIdAndUpdate(
-//       req.params.id,
-//       { productQuantity:updated, inpValue:Value},
-//       { new: true }
-//     );
-// console.log(updatedProduct);
-
-//     res.json(updatedProduct);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// }
-
-
-// const updateTodos =async (req, res) => {
-//    let gettodo;
-      
-// // console.log(req.body.counter,"this is body");
-
-
-
-  
-//   try {
-//     const id = req.params.id;
-//      gettodo = await todosModel.findById(id);
-//     res.status(200).json(gettodo);
-//   } catch (error) {
-//     res.status(400).json({ message: "Failed to get todo", error });
-//   }
-
-      
-//   try {
-//     const {count} = req.body.counter;
-//     const {quantity}=req.body.quantity
-//     console.log(Number(gettodo.productQuantity+count));
-//     console.log(req.body.quantity,"Currvalue");
-
-    
-    
-//     const updatedTodo=Number(gettodo.productQuantity+req.body.counter)
-//     // console.log(updatedTodo,"ekdew");
-//     const newValue=Number(gettodo.req.body.quantity-gettodo.req.body.quantity+quantity)
-    
-
-//     const id = req.params.id;
-
-
-//     console.log(id, "Product ID");
-
-//     const updatedProduct = await todosModel.findByIdAndUpdate(
-//       id,
-//       { productQuantity: updatedTodo },
-//    {inpValue:newValue},
-//       { new: true }
-//     );
-
-//     console.log(updatedProduct, "Updated Document");
-
-//     res.status(200).json(updatedProduct);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(400).json({ message: "Failed to update product", error });
-//   }
-// }
 const updateTodos = async (req, res) => {
   try {
     const id = req.params.id;
@@ -600,68 +526,6 @@ try {
 
 
   }
-
-
-// const printStoreBill=async(req,res)=>{
-
-
-
-//   console.log(req.userId,"userid");
-  
-//   const {name,price,quantity}=req.body
-// try {
-
-//   const products=await storePrintModel.findOne({name:name})
-//   console.log(products,"productss");
-
-
-
-  
-//   if (products) {
-
-//     const updateqty=Number(quantity+1)
-//     const updated=await storePrintModel.findOneAndUpdate(name,{
-//       quantity:updateqty
-//     },
-//   {new:true})
-//   res.json(updated)
-// //     const postedproduct=new storePrintModel({
-    
-// //   name:name,
-// //   price:price,
-// //   quantity:quantity+1,
-// //   uploadedBy:req.userId
-
-// // })
-// // const userSaved=await postedproduct.save()
-// // res.json(userSaved)
-
-    
-//   }else{
-// const postedproduct=new storePrintModel({
-
-//   name:name,
-//   price:price,
-//   quantity:quantity,
-//   uploadedBy:req.userId
-
-// })
-// const userSaved=await postedproduct.save()
-// res.json(userSaved)
-
-// console.log("hellobroo");
-//   }
-  
-
-
-// }
-//    catch (error) {
-//     res.json(error)
-  
-// }
-
-
-// }
 
 const printStoreBill = async (req, res) => {
   const userId = req.userId;

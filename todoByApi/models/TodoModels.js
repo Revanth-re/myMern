@@ -12,8 +12,9 @@ const todosSchema = new mongoose.Schema({
   // ProductExpiry: String,
   // base64: String, // Image in Base64
   // inpValue:Number,
-  // uploadedBy:String
+  uploadedBy:String
 });
+
 
 
 const kathasData = new mongoose.Schema({
@@ -67,7 +68,7 @@ const additionaldata=new mongoose.Schema({
 
 const additionalModel=mongoose.model("additionalData",additionaldata)
 
-
+// const anotherModel=mongoose.model("anotherData",anotherData)
 const storePrintModel=mongoose.model("storePrintDetail",storePrinting)
 const storeModel=mongoose.model("storeData",StoreDetails)
 const printModel= mongoose.model("printDetail",printDetails)
