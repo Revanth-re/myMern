@@ -11,7 +11,7 @@
 // //   const myref=useRef(init)
 
  
-// //   const [HandleProducts, setHandleProducts] = useState({
+// //   const [handleProducts, setHandleproducts] = useState({
 // //     productname: "",
 // //     productCategory: "",
 // //     productQuantity: "",
@@ -28,7 +28,7 @@
 // //     e.preventDefault();
 // //    setInpvalue(myref.current.value)
       
-// //     const FinalData = {...HandleProducts,base64,inpValue };
+// //     const handleProducts = {...handleProducts,base64,inpValue };
 // // const data=JSON.parse(localStorage.getItem("userToken")) 
 // // console.log(data,"datauser");
 
@@ -38,7 +38,7 @@
 // //     try {
 // //       const res = await axios.post(
 // //         "https://mymern-e51y.onrender.com/api/products",
-// //         FinalData,
+// //         handleProducts,
 // //           {
 // //     headers: { Authorization: `Bearer ${userToken}` }
 // //   }
@@ -72,8 +72,8 @@
 // //             </label>
 // //             <input
 // //               onChange={(e) =>
-// //                 setHandleProducts({
-// //                   ...HandleProducts,
+// //                 setHandleproducts({
+// //                   ...handleProducts,
 // //                   productname: e.target.value,
 // //                 })
 // //               }
@@ -91,8 +91,8 @@
 // //             </label>
 // //             <select
 // //               onChange={(e) =>
-// //                 setHandleProducts({
-// //                   ...HandleProducts,
+// //                 setHandleproducts({
+// //                   ...handleProducts,
 // //                   productCategory: e.target.value,
 // //                 })
 // //               }
@@ -120,8 +120,8 @@
 // //          ref={myref}
 // //                 type="number"
 // //                 onChange={(e) =>
-// //                   setHandleProducts({
-// //                     ...HandleProducts,
+// //                   setHandleproducts({
+// //                     ...handleProducts,
 // //                     productQuantity: e.target.value,
 // //                   })
                   
@@ -140,8 +140,8 @@
 // //               <input
 // //                 type="number"
 // //                 onChange={(e) =>
-// //                   setHandleProducts({
-// //                     ...HandleProducts,
+// //                   setHandleproducts({
+// //                     ...handleProducts,
 // //                     productActualPrice: e.target.value,
 // //                   })
 // //                 }
@@ -158,8 +158,8 @@
 // //               <input
 // //                 type="number"
 // //                 onChange={(e) =>
-// //                   setHandleProducts({
-// //                     ...HandleProducts,
+// //                   setHandleproducts({
+// //                     ...handleProducts,
 // //                     productSellingPrice: e.target.value,
 // //                   })
 // //                 }
@@ -176,8 +176,8 @@
 // //               <input
 // //                 type="date"
 // //                 onChange={(e) =>
-// //                   setHandleProducts({
-// //                     ...HandleProducts,
+// //                   setHandleproducts({
+// //                     ...handleProducts,
 // //                     ProductExpiry: e.target.value,
 // //                   })
 // //                 }
@@ -278,7 +278,7 @@
 // const Hero = () => {
 //   const myref = useRef(null);
 
-//   const [HandleProducts, setHandleProducts] = useState({
+//   const [handleProducts, setHandleproducts] = useState({
 //     productName: "",
 //     productCategory: "",
 //     productQuantity: "",
@@ -294,15 +294,15 @@
 //   e.preventDefault();
 
 //   // Convert string inputs to numbers before sending
-//   const FinalData = {
-//     ...HandleProducts,
-//     productQuantity: Number(HandleProducts.productQuantity),
-//     productActualPrice: Number(HandleProducts.productActualPrice),
-//     productSellingPrice: Number(HandleProducts.productSellingPrice),
+//   const handleProducts = {
+//     ...handleProducts,
+//     productQuantity: Number(handleProducts.productQuantity),
+//     productActualPrice: Number(handleProducts.productActualPrice),
+//     productSellingPrice: Number(handleProducts.productSellingPrice),
 //     base64
 //   };
 
-//   console.log("Sending data:", FinalData); // Add this to see what's being sent
+//   console.log("Sending data:", handleProducts); // Add this to see what's being sent
 
 //   const data = JSON.parse(localStorage.getItem("userToken"));
 //   const userToken = data?.token;
@@ -310,7 +310,7 @@
 //   try {
 //     const res = await axios.post(
 //       "https://mymern-e51y.onrender.com/api/products",
-//       FinalData,
+//       handleProducts,
 //       {
 //         headers: { 
 //           Authorization: `Bearer ${userToken}`,
@@ -359,8 +359,8 @@
 //               </label>
 //               <input
 //                 onChange={(e) =>
-//                   setHandleProducts({
-//                     ...HandleProducts,
+//                   setHandleproducts({
+//                     ...handleProducts,
 //                     productname: e.target.value,
 //                   })
 //                 }
@@ -378,8 +378,8 @@
 //               </label>
 //               <select
 //                 onChange={(e) =>
-//                   setHandleProducts({
-//                     ...HandleProducts,
+//                   setHandleproducts({
+//                     ...handleProducts,
 //                     productCategory: e.target.value,
 //                   })
 //                 }
@@ -407,8 +407,8 @@
 //                   ref={myref}
 //                   type="number"
 //                   onChange={(e) =>
-//                     setHandleProducts({
-//                       ...HandleProducts,
+//                     setHandleproducts({
+//                       ...handleProducts,
 //                       productQuantity: e.target.value,
 //                     })
 //                   }
@@ -426,8 +426,8 @@
 //                 <input
 //                   type="number"
 //                   onChange={(e) =>
-//                     setHandleProducts({
-//                       ...HandleProducts,
+//                     setHandleproducts({
+//                       ...handleProducts,
 //                       productActualPrice: e.target.value,
 //                     })
 //                   }
@@ -445,8 +445,8 @@
 //                 <input
 //                   type="number"
 //                   onChange={(e) =>
-//                     setHandleProducts({
-//                       ...HandleProducts,
+//                     setHandleproducts({
+//                       ...handleProducts,
 //                       productSellingPrice: e.target.value,
 //                     })
 //                   }
@@ -464,8 +464,8 @@
 //                 <input
 //                   type="date"
 //                   onChange={(e) =>
-//                     setHandleProducts({
-//                       ...HandleProducts,
+//                     setHandleproducts({
+//                       ...handleProducts,
 //                       ProductExpiry: e.target.value,
 //                     })
 //                   }
@@ -528,13 +528,15 @@ import image from "../assets/noImage.jpg";
 const Hero = () => {
   const myref = useRef(null);
 
-  const [HandleProducts, setHandleProducts] = useState({
+  const [handleProducts, setHandleproducts] = useState({
     productname: "",
-    // productCategory: "",
-    // productQuantity: "",
-    // productActualPrice: "",
-    // productSellingPrice: "",
-    // ProductExpiry: "",
+    productCategory: "",
+    productQuantity: "",
+    productActualPrice: "",
+    productSellingPrice: "",
+    ProductExpiry: "",
+    base64:"",
+    // inpValue:""
   });
 
   const [base64, setBase64Image] = useState(image);
@@ -545,19 +547,21 @@ const Hero = () => {
     e.preventDefault();
     // setInpvalue(myref.current.value);
 
-    // const FinalData = { ...HandleProducts, base64, inpValue };
+    const FinalData = { ...handleProducts, base64, inpValue };
     const data = JSON.parse(localStorage.getItem("userToken"));
     const userToken = data?.token;
 
     try {
       const res = await axios.post(
-        "https://mymern-e51y.onrender.com/api/products",
-        HandleProducts,
+        "https://mymern-e51y.onrender.com/api/addproducts",
+
+        FinalData,
         {
           headers: { Authorization: `Bearer ${userToken}` },
         }
       );
       console.log(res);
+
       alert("✅ Product saved!");
       setShowForm(false); // hide after submit
     } catch (err) {
@@ -594,8 +598,8 @@ const Hero = () => {
               </label>
               <input
                 onChange={(e) =>
-                  setHandleProducts({
-                    ...HandleProducts,
+                  setHandleproducts({
+                    ...handleProducts,
                     productname: e.target.value,
                   })
                 }
@@ -605,15 +609,15 @@ const Hero = () => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-{/* 
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Category
               </label>
               <select
                 onChange={(e) =>
-                  setHandleProducts({
-                    ...HandleProducts,
+                  setHandleproducts({
+                    ...handleProducts,
                     productCategory: e.target.value,
                   })
                 }
@@ -641,8 +645,8 @@ const Hero = () => {
                   ref={myref}
                   type="number"
                   onChange={(e) =>
-                    setHandleProducts({
-                      ...HandleProducts,
+                    setHandleproducts({
+                      ...handleProducts,
                       productQuantity: e.target.value,
                     })
                   }
@@ -660,8 +664,8 @@ const Hero = () => {
                 <input
                   type="number"
                   onChange={(e) =>
-                    setHandleProducts({
-                      ...HandleProducts,
+                    setHandleproducts({
+                      ...handleProducts,
                       productActualPrice: e.target.value,
                     })
                   }
@@ -679,8 +683,8 @@ const Hero = () => {
                 <input
                   type="number"
                   onChange={(e) =>
-                    setHandleProducts({
-                      ...HandleProducts,
+                    setHandleproducts({
+                      ...handleProducts,
                       productSellingPrice: e.target.value,
                     })
                   }
@@ -698,8 +702,8 @@ const Hero = () => {
                 <input
                   type="date"
                   onChange={(e) =>
-                    setHandleProducts({
-                      ...HandleProducts,
+                    setHandleproducts({
+                      ...handleProducts,
                       ProductExpiry: e.target.value,
                     })
                   }
@@ -727,7 +731,7 @@ const Hero = () => {
                   file:border file:rounded-lg file:text-sm file:font-semibold 
                   file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
               />
-            </div> */}
+            </div> 
 
             {/* Submit + Cancel */}
             <div className="flex gap-3">

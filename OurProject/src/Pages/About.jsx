@@ -823,6 +823,7 @@ const About = () => {
         "https://mymern-e51y.onrender.com/api/getAll",
         { headers: { Authorization: `Bearer ${userToken}` } }
       );
+console.log(data);
 
       const today = new Date();
       const updated = (Array.isArray(data) ? data : []).map((item) => ({
@@ -917,6 +918,7 @@ const About = () => {
     if (!item.isExpired) Navigate(`/MoreDetails/${item._id}`);
   };
 
+  // const filteredProducts=allProducts
   const filteredProducts = allProducts.filter(
     (p) =>
       (category === "All" || p.productCategory === category) &&
