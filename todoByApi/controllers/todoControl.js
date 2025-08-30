@@ -106,17 +106,28 @@ const getAllProducts = async (req, res) => {
 // Add a new todo
 const addProducts = async (req, res) => {
 
-const{productname}=req.body
+const{productname,productActualPrice,productCategory,productQuantity,productSellingPrice,ProductExpiry,base64}=req.body
   console.log(req.userId,"userid");
+  console.log(productname,"name");
+  
   
   try {
     // const data=req.body
     // console.log(data);
 
-    const newProduct =  new anotherModel({
+    const newProduct =  new todosModel({
 
-productname:productname
-      
+productname:productname,
+productCategory: productCategory,
+  productQuantity: productQuantity,
+ 
+  productActualPrice: productActualPrice,
+  productSellingPrice: productSellingPrice,
+  ProductExpiry: ProductExpiry,
+  base64:  base64,
+  inpValue:productQuantity,
+
+      uploadedBy:req.userId
 
      
        // userId comes from middleware
