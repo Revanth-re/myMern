@@ -94,7 +94,7 @@ const PaymentComponent = () => {
     };
 
     const subscribed=JSON.parse(localStorage.getItem("paymentDetails"))
-    console.log(subscribed.paymentId);
+    // console.log(subscribed.paymentId);
     
     return (
         <div className="bg-gray-50 min-h-screen p-6">
