@@ -99,25 +99,25 @@ app.use(express.urlencoded({ extended: true }));
 //   allowedHeaders: ['Content-Type','Authorization']
 // }));
 // const cors = require("cors");
-
 const allowedOrigins = [
-  "http://localhost:5173",        // for local dev
-  "https://my-mern.vercel.app"    // for production
+  "http://localhost:5173",       // for local dev
+  "https://my-mern.vercel.app"   // for production
 ];
 
 app.use(cors({
-  origin: function(origin, callback){
-    // allow requests with no origin (like mobile apps or Postman)
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.indexOf(origin) === -1){
-      const msg = `The CORS policy for this site does not allow access from the specified Origin.`;
+  origin: function (origin, callback) {
+    // allow requests with no origin (React Native, Postman, mobile apps)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = `The CORS policy does not allow access from origin: ${origin}`;
       return callback(new Error(msg), false);
     }
+
     return callback(null, true);
   },
   credentials: true
 }));
-
 
 ConnectDB();
 
