@@ -1,147 +1,126 @@
-
-const { anotherModel,todosModel,userModel ,kathasModel, printModel,storeModel, storePrintModel, additionalModel} = require("../models/TodoModels.js");
-const Razorpay=require("razorpay")
+const {
+  anotherModel,
+  todosModel,
+  userModel,
+  kathasModel,
+  printModel,
+  storeModel,
+  storePrintModel,
+  additionalModel,
+} = require("../models/TodoModels.js");
+const Razorpay = require("razorpay");
 // const escpos = require('escpos');
 
 // const USB = require("escpos-usb");
 
 // Get all todos
 
-const getKhatas=async(req,res)=>{
+const getKhatas = async (req, res) => {
   try {
-    const Data=await kathasModel.find({uploadedBy:req.userId})
-  res.json(Data)
-  } 
-  
-  catch (error) {
-    res.status(404).json(error)
+    const Data = await kathasModel.find({ uploadedBy: req.userId });
+    res.json(Data);
+  } catch (error) {
+    res.status(404).json(error);
   }
-
-}
-const deleteKhatas=async(req,res)=>{
-
-  const id=req.params.id
+};
+const deleteKhatas = async (req, res) => {
+  const id = req.params.id;
   try {
-    
-  
-const deletedProduct=await kathasModel.findByIdAndDelete(id)
-res.json(deletedProduct)
-
-}
-catch (error) {
-    res.json(error)
+    const deletedProduct = await kathasModel.findByIdAndDelete(id);
+    res.json(deletedProduct);
+  } catch (error) {
+    res.json(error);
   }
+};
+const updateKhatas = async (req, res) => {
+  const id = req.params.id;
 
-}
-const updateKhatas=async(req,res)=>{
-  
-  const id=req.params.id
+  console.log(id, "params");
 
-
-  console.log(id,"params");
-  
-  const {money}=req.body
+  const { money } = req.body;
   try {
-    
-  
-
-const data=await kathasModel.findById(id)
-console.log(data)
-const updatedStatus="cleared"
-const completedMoney=money
-const updatedProduct=await kathasModel.findByIdAndUpdate(id,{
-  paymentStatus:updatedStatus,
-  totalMoney:0
-
-
-
-},{new:true})
-res.json(updatedProduct)
+    const data = await kathasModel.findById(id);
+    console.log(data);
+    const updatedStatus = "cleared";
+    const completedMoney = money;
+    const updatedProduct = await kathasModel.findByIdAndUpdate(
+      id,
+      {
+        paymentStatus: updatedStatus,
+        totalMoney: 0,
+      },
+      { new: true }
+    );
+    res.json(updatedProduct);
+  } catch (error) {
+    res.json(error);
   }
-catch (error) {
-    res.json(error)
+};
+const addKhatas = async (req, res) => {
+  try {
+    const newProduct = await new kathasModel({
+      uploadedBy: req.userId,
+      ...req.body,
+    });
+    const NewData = await newProduct.save();
+    res.status(200).json(NewData);
+  } catch (error) {
+    res.status(200).json(error);
   }
-
-
-
-
-}
-const addKhatas=async(req,res)=>{
-
-
-
-  
-try {
-  const newProduct=await new kathasModel({
-  uploadedBy:req.userId,
-  ...req.body
-})
-const NewData=await newProduct.save()
-res.status(200).json(NewData)
-} 
-
-catch (error) {
-  res.status(200).json(error)
-}
-
-
-
-}
+};
 const getAllProducts = async (req, res) => {
-  
-  
- 
-  
   try {
-    const todosData = await todosModel.find({uploadedBy:req.userId});
+    const todosData = await todosModel.find({ uploadedBy: req.userId });
     // console.log(todosData)
-    
+
     res.status(200).json(todosData);
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch todos", error });
   }
 };
 
-
 // Add a new todo
 const addProducts = async (req, res) => {
+  const {
+    productname,
+    productActualPrice,
+    productCategory,
+    productQuantity,
+    productSellingPrice,
+    ProductExpiry,
+    base64,
+  } = req.body;
+  console.log(req.userId, "userid");
+  console.log(productname, "name");
 
-const{productname,productActualPrice,productCategory,productQuantity,productSellingPrice,ProductExpiry,base64}=req.body
-  console.log(req.userId,"userid");
-  console.log(productname,"name");
-  
-  
   try {
     // const data=req.body
     // console.log(data);
 
-    const newProduct =  new todosModel({
+    const newProduct = new todosModel({
+      productname: productname,
+      productCategory: productCategory,
+      productQuantity: productQuantity,
 
-productname:productname,
-productCategory: productCategory,
-  productQuantity: productQuantity,
- 
-  productActualPrice: productActualPrice,
-  productSellingPrice: productSellingPrice,
-  ProductExpiry: ProductExpiry,
-  base64:  base64,
-  inpValue:productQuantity,
+      productActualPrice: productActualPrice,
+      productSellingPrice: productSellingPrice,
+      ProductExpiry: ProductExpiry,
+      base64: base64,
+      inpValue: productQuantity,
 
-      uploadedBy:req.userId
+      uploadedBy: req.userId,
 
-     
-       // userId comes from middleware
-    })
-    const user=await newProduct.save()
+      // userId comes from middleware
+    });
+    const user = await newProduct.save();
     // await newProduct.save();
-console.log(user,"user");
+    console.log(user, "user");
 
     res.json(user);
-
   } catch (error) {
     res.status(400).json(error);
-
-  }}
+  }
+};
 
 const updateTodos = async (req, res) => {
   try {
@@ -156,20 +135,19 @@ const updateTodos = async (req, res) => {
 
     // Calculate new values
     const updatedQuantity = Number(gettodo.productQuantity) + Number(counter);
-    const newValue = Number(quantity+1); // Or your intended calculation
+    const newValue = Number(quantity + 1); // Or your intended calculation
 
     // Update the product
     const updatedProduct = await todosModel.findByIdAndUpdate(
       id,
-      { 
+      {
         productQuantity: updatedQuantity,
-        inpValue: newValue
+        inpValue: newValue,
       },
       { new: true }
     );
 
     res.status(200).json(updatedProduct);
-
   } catch (error) {
     console.error(error);
     res.status(400).json({ message: "Failed to update product", error });
@@ -182,8 +160,8 @@ const updateDecrease = async (req, res) => {
     const gettodo = await todosModel.findById(id);
 
     const count = Number(req.body.counter);
-  //  const Currquantity=Number(req.body.quantity)
-    const updatedTodo = Number(gettodo.productQuantity) + count // ✅ FIX 2
+    //  const Currquantity=Number(req.body.quantity)
+    const updatedTodo = Number(gettodo.productQuantity) + count; // ✅ FIX 2
     // const updatedValue=Number(gettodo.inpValue=Currquantity)
 
     const updatedProduct = await todosModel.findByIdAndUpdate(
@@ -198,31 +176,23 @@ const updateDecrease = async (req, res) => {
   }
 };
 
-
-
-
-
 // Delete a todo by ID
-const deletetodos = async(req,res)=>{
-      console.log(req,"sdifyheu");
-      
-const id=req.params.id
-console.log(id,"identidty");
+const deletetodos = async (req, res) => {
+  console.log(req, "sdifyheu");
 
-    try {
-      const deletedProduct=await todosModel.findByIdAndDelete(id)
-      res.status(200).json(deletedProduct)
-      
-    } catch (error) {
-      console.log(error)
-      
-    }
+  const id = req.params.id;
+  console.log(id, "identidty");
 
+  try {
+    const deletedProduct = await todosModel.findByIdAndDelete(id);
+    res.status(200).json(deletedProduct);
+  } catch (error) {
+    console.log(error);
   }
+};
 
-
-  const expiryDateHandler=async(req,res)=>{
-  const {expiry}=req.body.expire
+const expiryDateHandler = async (req, res) => {
+  const { expiry } = req.body.expire;
 
   try {
     const updatedProduct = await todosModel.findByIdAndUpdate(
@@ -234,187 +204,152 @@ console.log(id,"identidty");
     console.log(updatedProduct, "Updated Document");
 
     res.status(200).json(updatedProduct);
-  
   } catch (error) {
-    
     console.log(error);
     res.status(400).json({ message: "Failed to update product", error });
-
   }
-  
-  }
+};
 
-  const PaymentProcess=async(req,res)=>{
-    
-const pay = new Razorpay({
+const PaymentProcess = async (req, res) => {
+  const pay = new Razorpay({
     key_id: process.env.RAZOR_PAY_KEY_ID,
-    key_secret: process.env.RAZOR_PAY_SECRET_KEY
-});
-console.log(pay.orders,"pay");
+    key_secret: process.env.RAZOR_PAY_SECRET_KEY,
+  });
+  console.log(pay.orders, "pay");
 
+  try {
+    const { amount } = req.body; // Amount in INR
+    if (!amount) return res.status(400).json({ message: "Amount is required" });
 
+    const options = {
+      amount: amount * 100, // Convert to paise
+      currency: "INR",
+      receipt: `receipt_${Date.now()}`,
+    };
 
+    const order = await pay.orders.create(options);
+    console.log(order, "hello");
 
-    try {
-        const { amount } = req.body; // Amount in INR
-        if (!amount) return res.status(400).json({ message: "Amount is required" });
-
-        const options = {
-            amount: amount * 100, // Convert to paise
-            currency: "INR",
-            receipt: `receipt_${Date.now()}`
-        };
-
-        const order = await pay.orders.create(options);
-        console.log(order,"hello");
-        
-        res.status(200).json(order);
-    } catch (error) {
-        console.error("Error creating Razorpay order:", error);
-        res.status(500).json({ message: "Error creating order" });
-    }
+    res.status(200).json(order);
+  } catch (error) {
+    console.error("Error creating Razorpay order:", error);
+    res.status(500).json({ message: "Error creating order" });
   }
-
-  
+};
 
 // Get a single todo by ID
 const getOne = async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     const gettodo = await todosModel.findById(id);
     res.status(200).json(gettodo);
   } catch (error) {
     res.status(400).json({ message: "Failed to get todo", error });
   }
 };
-const MoreDetails= async(req,res)=>{
-      const id=req.params.id
+const MoreDetails = async (req, res) => {
+  const id = req.params.id;
 
-      console.log(id,"wjehwu");
+  console.log(id, "wjehwu");
 
-       try {
+  try {
     const todosData = await todosModel.findById(id);
-    console.log(todosData)
-    
+    console.log(todosData);
+
     res.status(200).json(todosData);
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch todos", error });
   }
-} 
+};
 
-const LoginController=async(req,res)=>{
- 
-  const {name,password}=req.body
-  
-  try{
-  const userData=await userModel.findOne({name:name})
-  if (userData) {
-      const compared=await bcrypt.compare(password,userData.password)
-  
-  if (compared===true) {
-  
-  const token=jwt.sign(userData.toObject(),process.env.JWT_SECRET_KEY,{expiresIn:"2400h"})
-  
-  
-  console.log(token)
-  res.json({userDetails:{name:name,mobileNum:userData.number},accessToken:{token}})
-  
-  
-  
-  
-      
-      
-  } else {
-     res.json("error occured in validation") 
-  }
-  }else{
-  res.json("no data found")
-  }
-  }catch(error){
-  console.log(error);
-  
-  }
-  
-  
-  
-  
-  }
+const LoginController = async (req, res) => {
+  const { name, password } = req.body;
 
-  const signupController=async(req,res)=>{
-
-   
-    const {name,password}=req.body
-    
-    try{
-    const userData=await userModel.findOne({name:name})
+  try {
+    const userData = await userModel.findOne({ name: name });
     if (userData) {
-        const compared=bcrypt.compare(password,userData.password)
-    
-    if (compared===true) {
-    
-    const token=jwt.sign(userData.toObject(),process.env.JWT_SECRET_KEY,{expiresIn:"2400h"})
-    
-    
-    console.log(token)
-    res.json({userDetails:{name:name,mobileNum:userData.number},accessToken:{token}})
-    
-    
-    
-    
-        
-        
+      const compared = await bcrypt.compare(password, userData.password);
+
+      if (compared === true) {
+        const token = jwt.sign(
+          userData.toObject(),
+          process.env.JWT_SECRET_KEY,
+          { expiresIn: "2400h" }
+        );
+
+        console.log(token);
+        res.json({
+          userDetails: { name: name, mobileNum: userData.number },
+          accessToken: { token },
+        });
+      } else {
+        res.json("error occured in validation");
+      }
     } else {
-       res.json("error occured in validation") 
+      res.json("no data found");
     }
-    }else{
-    res.json("no data found")
-    }
-    }catch(error){
+  } catch (error) {
     console.log(error);
-    
-    }
-    
-    
-    
-    
-    }
-    
-    
-    
+  }
+};
 
+const signupController = async (req, res) => {
+  const { name, password } = req.body;
 
+  try {
+    const userData = await userModel.findOne({ name: name });
+    if (userData) {
+      const compared = bcrypt.compare(password, userData.password);
+
+      if (compared === true) {
+        const token = jwt.sign(
+          userData.toObject(),
+          process.env.JWT_SECRET_KEY,
+          { expiresIn: "2400h" }
+        );
+
+        console.log(token);
+        res.json({
+          userDetails: { name: name, mobileNum: userData.number },
+          accessToken: { token },
+        });
+      } else {
+        res.json("error occured in validation");
+      }
+    } else {
+      res.json("no data found");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const postPrints = async (req, res) => {
   try {
     // const userId = req.userId; // from auth middleware
     const { pName, selling, quantity } = req.body;
-    console.log(pName,selling);
-    
+    console.log(pName, selling);
 
     // Validate request
-   
 
     // Ensure quantity is a number
-  
 
     // Check if product already exists for this user
     const existingProduct = await printModel.findOne({
-      productName:pName
+      productName: pName,
     });
 
     if (existingProduct) {
-      const updatedProduct=await printModel.findOneAndUpdate( {productName:pName},{
+      const updatedProduct = await printModel.findOneAndUpdate(
+        { productName: pName },
+        {
+          productName: pName,
+          actualPrice: selling,
+          quantity: Number(quantity + 1),
 
-      productName:pName,
-      actualPrice:selling,
-      quantity:Number(quantity+1),
-
-      uploadedBy: req.userId,
-
-    
-
-
-      })
+          uploadedBy: req.userId,
+        }
+      );
       // If exists, increment quantity
       // existingProduct.quantity += 1;
       const saved = await updatedProduct.save();
@@ -422,41 +357,35 @@ const postPrints = async (req, res) => {
     } else {
       // If not exists, create new product
       const newProduct = new printModel({
-        productName:pName,
-        actualPrice:selling,
+        productName: pName,
+        actualPrice: selling,
         uploadedBy: req.userId,
-        quantity:1
+        quantity: 1,
       });
       const savedProduct = await newProduct.save();
       return res.status(200).json(savedProduct);
     }
   } catch (err) {
     console.error("Error in postPrints:", err);
-    return res.status(500).json({ message: "Server error", error: err.message });
+    return res
+      .status(500)
+      .json({ message: "Server error", error: err.message });
   }
 };
 
-
-
-
-const getPrintDetails=async(req,res)=>{
-try {
-    const Data=await printModel.find({uploadedBy:req.userId})
-  res.json(Data)
-  } 
-  
-  catch (error) {
-    res.status(404).json(error)
+const getPrintDetails = async (req, res) => {
+  try {
+    const Data = await printModel.find({ uploadedBy: req.userId });
+    res.json(Data);
+  } catch (error) {
+    res.status(404).json(error);
   }
+};
 
-}
-
-
-
-const deletebillprint=async(req,res)=>{
+const deletebillprint = async (req, res) => {
   // const id=req.userId
   try {
-    const result = await printModel.deleteMany({uploadedBy:req.userId})
+    const result = await printModel.deleteMany({ uploadedBy: req.userId });
     res.status(200).json({
       message: `All items deleted successfully`,
       deletedCount: result.deletedCount,
@@ -465,78 +394,56 @@ const deletebillprint=async(req,res)=>{
     console.error(err);
     res.status(500).json({ message: "Error deleting items" });
   }
+};
+
+const deletestorebillItems = async (req, res) => {
+  try {
+    const deleted = await printModel.deleteMany({ uploadedBy: req.userId });
+    console.log(deleted);
+    res.json(deleted);
+  } catch (error) {
+    res.json(error);
   }
+};
 
-  const deletestorebillItems=async(req,res)=>{
-try {
-  const deleted=await printModel.deleteMany({uploadedBy:req.userId})
-  console.log(deleted);
-  res.json(deleted)
-  
-  
-} catch (error) {
-  res.json(error)
-  
-}
+const postStoreData = async (req, res) => {
+  console.log(req.body, "bodyyyyyy");
 
+  console.log(req.userId, "userid");
 
-  }
+  const { storeName, storeOwner, products } = req.body;
+  console.log(storeName, "name of the storeee");
 
-
-  const postStoreData=async(req,res)=>{
-    console.log(req.body,"bodyyyyyy");
-
-    
-
-
-  console.log(req.userId,"userid");
-  
-  
-  const {storeName,storeOwner,products}=req.body
-  console.log(storeName,"name of the storeee");
-  
   try {
     // const data=req.body
     // console.log(data);
 
     const newProduct = new storeModel({
       uploadedBy: req.userId,
-     storeName:storeName,
-     OwnerName:storeOwner,
-     Products:products
-      
-       // userId comes from middleware
-    })
-    const user=await newProduct.save()
+      storeName: storeName,
+      OwnerName: storeOwner,
+      Products: products,
+
+      // userId comes from middleware
+    });
+    const user = await newProduct.save();
     // await newProduct.save();
-console.log(user,"user");
+    console.log(user, "user");
 
     res.json(user);
-
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+};
 
-
+const getYourProducts = async (req, res) => {
+  try {
+    const Data = await storeModel.find({ uploadedBy: req.userId });
+    res.json(Data);
+  } catch (error) {
+    res.status(404).json(error);
   }
-
-  const getYourProducts=async(req,res)=>{
-
-
-try {
-    const Data=await storeModel.find({uploadedBy:req.userId})
-  res.json(Data)
-  } 
-  
-  catch (error) {
-    res.status(404).json(error)
-  }
-
-
-
-
-
-  }
+};
 
 const printStoreBill = async (req, res) => {
   const userId = req.userId;
@@ -548,7 +455,7 @@ const printStoreBill = async (req, res) => {
 
     if (existingProduct) {
       // Increment quantity
-      const updatedQty = (existingProduct.quantity || 0) + Number( 1);
+      const updatedQty = (existingProduct.quantity || 0) + Number(1);
       const updatedProduct = await storePrintModel.findOneAndUpdate(
         { name: name },
         { quantity: updatedQty },
@@ -561,57 +468,46 @@ const printStoreBill = async (req, res) => {
         name,
         price,
         quantity: quantity,
-        uploadedBy: userId
+        uploadedBy: userId,
       });
       const savedProduct = await newProduct.save();
       return res.json(savedProduct);
     }
   } catch (error) {
     console.error("Error in printStoreBill:", error);
-    return res.status(500).json({ error: error});
+    return res.status(500).json({ error: error });
   }
 };
 
-const getStoreBill=async(req,res)=>{
-try {
-   const Data=await storePrintModel.find({uploadedBy:req.userId})
-  res.json(Data)
-} catch (error) {
-  res.json(error)
-}
+const getStoreBill = async (req, res) => {
+  try {
+    const Data = await storePrintModel.find({ uploadedBy: req.userId });
+    res.json(Data);
+  } catch (error) {
+    res.json(error);
+  }
+};
 
-}
-
-const removeItem=async(req,res)=>{
-  const {prod} =req.body
- 
-  
-  
+const removeItem = async (req, res) => {
+  const { prod } = req.body;
 
   try {
-    const deleted=await storePrintModel.deleteMany({name:prod.name})
-    res.json(deleted)
-    console.log(
-      deleted ,"reulted"
-    );
-    
+    const deleted = await storePrintModel.deleteMany({ name: prod.name });
+    res.json(deleted);
+    console.log(deleted, "reulted");
+
     // console.log("resulteddddd");
-    
-    
   } catch (error) {
-    res.json(error)
+    res.json(error);
   }
+};
 
-}
-
-
-const deletestorebillprint=async(req,res)=>{
-
+const deletestorebillprint = async (req, res) => {
   // console.log("odiyamma badava");
   // const id=req.userId
-  
+
   try {
-    const result = await storePrintModel.deleteMany({uploadedBy:req.userId})
+    const result = await storePrintModel.deleteMany({ uploadedBy: req.userId });
     res.status(200).json({
       message: `All items deleted successfully`,
       deletedCount: result.deletedCount,
@@ -620,49 +516,36 @@ const deletestorebillprint=async(req,res)=>{
     console.error(err);
     res.status(500).json({ message: "Error deleting items" });
   }
-  }
+};
 
-const postAdditionalData=async(req,res)=>{
-  const {AllData}=req.body
-  console.log(AllData,"filterrr");
-  
+const postAdditionalData = async (req, res) => {
+  const { AllData } = req.body;
+  console.log(AllData, "filterrr");
+
   console.log(req.userId);
-  
-
-try {
-  const postedData=new additionalModel({
-    productDetails:AllData,
-    uploadedBy:req.userId
-  }
-
-  )
-  console.log(postedData,"posted data");
-  
-  res.json(postedData)
-} catch (error) {
-  res.json(error)
-}
-
-}
-
-const updateExpiredItems=async(req,res)=>{
-
-const expiredProducts=req.body
-// console.log(filteredData,"filterdata");
-
 
   try {
-    const response=await todosModel.find()
-    response.forEach()
-    
-    
+    const postedData = new additionalModel({
+      productDetails: AllData,
+      uploadedBy: req.userId,
+    });
+    console.log(postedData, "posted data");
+
+    res.json(postedData);
   } catch (error) {
-    
+    res.json(error);
   }
+};
 
+const updateExpiredItems = async (req, res) => {
+  const expiredProducts = req.body;
+  // console.log(filteredData,"filterdata");
 
-
-}
+  try {
+    const response = await todosModel.find();
+    response.forEach();
+  } catch (error) {}
+};
 
 module.exports = {
   getAllProducts,
@@ -691,6 +574,5 @@ module.exports = {
   removeItem,
   postAdditionalData,
   updateExpiredItems,
-  deletestorebillItems
-
+  deletestorebillItems,
 };
